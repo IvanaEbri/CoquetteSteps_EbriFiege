@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class RolConfig(AppConfig):
+class CalzadoConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'rol'
+    name = 'calzado'

@@ -33,9 +33,9 @@ class Direccion(models.Model):
     codigo_postal = models.CharField(max_length=8)
     calle = models.CharField(max_length=100,null=False, blank=False)
     altura = models.IntegerField( null=False, blank=False)
-    depto = models.CharField(max_length=3, null=True)
-    piso = models.IntegerField( null=True)
-    observaciones = models.TextField(null=True)
+    depto = models.CharField(max_length=3,blank=True, null=True)
+    piso = models.CharField(max_length=3,blank=True, null=True)
+    observaciones = models.TextField(null=True, blank=True)
     activo = models.BooleanField(null=False, default=True)
 
     

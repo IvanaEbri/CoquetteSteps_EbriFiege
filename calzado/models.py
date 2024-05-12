@@ -34,21 +34,35 @@ MATERIAL_CHOICE=[
         (10,"Gabardina"),
         (11,"PVC"),
     ]
+def upload_to(instance, filename):
+    # Obtener la información necesaria de la instancia de Calzado
+    categoria = instance.tipo_calzado.categoria_nom.categoria
+    tipo = instance.tipo_calzado.tipo
+    codigo = instance.codigo
+
+    # Definir la ruta de almacenamiento para la imagen
+    return f'calzado/{categoria}/{tipo}/{codigo}/{filename}'
 
 # Create your models here.
 class Calzado(models.Model):
     codigo = models.CharField(max_length=10, null=False, unique=True, blank=False)
     nombre = models.CharField(max_length=50, null=False, unique=True, blank=False)
     tipo_calzado= models.ForeignKey('categoria.Tipo', on_delete=models.CASCADE, null=False, blank=False)
-    foto_prod = models.ImageField(upload_to='calzado/',null=True)
+    foto_prod = models.ImageField(upload_to=upload_to,null=True)
     descripcion = models.TextField(null=False, blank=False)
     color= models.IntegerField(choices=COLOR_CHOICE, default=COLOR_CHOICE[0][0])
     material = models.IntegerField(choices=MATERIAL_CHOICE, default=MATERIAL_CHOICE[0][0])
     precio = models.DecimalField(decimal_places=2,max_digits=7,null=False,blank=False, default=0.00)
     activo=models.BooleanField(null=False, default=True)
 
+    def save(self, *args, **kwargs):
+        # Antes de guardar el código se convierte en el nombre del archivo si es nuevo
+        if not self.pk:  # Si es un nuevo registro
+            self.foto_prod.name = f'{self.codigo}.jpg'  # Asignar el nombre del archivo basado en el código
+        super().save(*args, **kwargs)
+
     def __str__(self) -> str:
-        return self.nombre, self.precio
+        return (f'{self.codigo}: {self.nombre}')
 
     
-   
+

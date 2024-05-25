@@ -1,16 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Mi Sitio Web{% endblock %}</title>
-    <!-- Incluir archivos estáticos -->
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    <header>
+        <div class="top-bar">
+            <p>15% OFF x Transferencia 🔥 | 6 cuotas sin interés | Envíos a todo el país.</p>
+        </div>
+        <div class="header-main">
+            <div class="logo">
+                <h1>COQUETTESTEPS</h1>
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Ver Todo</a></li>
+                    <li><a href="#">Borcegos</a></li>
+                    <li><a href="#">Botas</a></li>
+                    <li><a href="#">Zuecos</a></li>
+                    <li><a href="#">Texanas</a></li>
+                    <li><a href="#">Bucaneras</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="#">Crear Cuenta</a>
+                <a href="#">Iniciar Sesión</a>
+                <a href="#"><span class="cart">🛒 0</span></a>
+            </div>
+        </div>
+    </header>
     {% block content %}
     {% endblock %}
-    <!-- Incluir scripts estáticos -->
-    <script src="{% static 'js/script.js' %}"></script>
+    <footer>
+        <p>&copy; 2024 CoquetteSteps. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>

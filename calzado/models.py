@@ -19,6 +19,8 @@ COLOR_CHOICE=[
         (16,"Plateado"),
         (17,"Dorado"),
         (18,"Multicolor"),
+        (19,"Tostado"),
+        (20,"Bordó"),
     ]
 
 MATERIAL_CHOICE=[
@@ -52,7 +54,7 @@ class Calzado(models.Model):
     descripcion = models.TextField(null=False, blank=False)
     color= models.IntegerField(choices=COLOR_CHOICE, default=COLOR_CHOICE[0][0])
     material = models.IntegerField(choices=MATERIAL_CHOICE, default=MATERIAL_CHOICE[0][0])
-    precio = models.DecimalField(decimal_places=2,max_digits=7,null=False,blank=False, default=0.00)
+    precio = models.DecimalField(decimal_places=2,max_digits=12,null=False,blank=False, default=0.00)
     activo=models.BooleanField(null=False, default=True)
 
     def save(self, *args, **kwargs):

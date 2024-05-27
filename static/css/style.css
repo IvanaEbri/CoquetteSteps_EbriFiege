@@ -1,3 +1,12 @@
+:root { /*definicion de variables de color*/
+    --white-color: #fff;
+    --beige-color: #ddd;
+    --light-pink-color: #e099ad;
+    --dark-coral: #ce5e7e ;
+    --black-color : #000;
+}
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,8 +14,8 @@ body {
 }
 
 .top-bar {
-    background-color: #e099ad;
-    color: white;
+    background-color: var(--light-pink-color);
+    color: var(--white-color);
     text-align: center;
     padding: 10px 0;
 }
@@ -16,8 +25,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: white;
-    border-bottom: 1px solid #ddd;
+    background-color: var(--white-color);
+    border-bottom: 1px solid var(--beige-color);
 }
 
 .logo h1 {
@@ -38,20 +47,20 @@ body {
 
 .navigation a {
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: var(--black-color);
     font-weight: bold;
 }
 
 .user-actions a {
     margin: 0 10px;
     text-decoration: none;
-    color: #000000
+    color: var(--black-color)
 }
 
 .hero {
     position: relative;
     text-align: center;
-    color: white;
+    color: var(--white-color);
 }
 
 .hero img {
@@ -76,8 +85,8 @@ body {
 }
 
 .hero-text a {
-    background-color: #e099ad;
-    color: white;
+    background-color: var(--light-pink-color);
+    color: var(--white-color);
     padding: 10px 20px;
     text-decoration: none;
     display: inline-block;
@@ -85,8 +94,48 @@ body {
 }
 
 footer {
-    background-color: #e099ad;
-    color: white;
+    background-color: var(--light-pink-color);
+    color: var(--white-color);
     text-align: center;
     padding: 10px 0;
+    margin-top: 15px;
 }
+
+.products h1{
+    text-align: center;
+    font-size: 50px;
+}
+
+.product-cont {
+    display: flex; /* Usa flexbox */
+    flex-wrap: wrap; /* Permite que las tarjetas se envuelvan en múltiples líneas */
+    justify-content: center;
+}
+
+.product-card {
+    display: inline-block;
+    border: 1px solid var(--beige-color);
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    margin: 0px 5px 10px 5px;
+  }
+.product-cont a {
+    text-decoration: none;
+}
+.product-image {
+    width: 100%;
+    border-radius: 5px;
+}
+.product-title {
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--black-color);
+}
+.product-price {
+    margin-top: 5px;
+    color: var(--dark-coral);
+    font-size: 1.2em;
+}
+  

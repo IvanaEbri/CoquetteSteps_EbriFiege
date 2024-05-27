@@ -3,3 +3,10 @@ Django==5.0.4
 sqlparse==0.5.0
 tzdata==2024.1
 Pillow==10.3.0
+Django-humaniza==0.1.2
+
+django-extensions     3.2.3
+django-filter         24.2
+django-humanize       0.1.2
+humanize              4.9.0
+pillow                10.3.0

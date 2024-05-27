@@ -1,15 +1,15 @@
 
 {% extends 'base.html' %}
 
-{% block title %}Inicio - Calzado{% endblock %}
+{% block title %}Coquette Steps{% endblock %}
 
 {% block content %}
+{% load static %}
     <div class="hero">
-        <img src="https://via.placeholder.com/1500x500" alt="Liquidación todo el año">
-        <div class="hero-text">
-            <h2>LIQUIDACIÓN</h2>
-            <p>todo el año</p>
-            <a href="#">CLIC ACÁ</a>
-        </div>
+        <img src="{% static 'calzado/Banner/Banner1.png' %}" alt="Banner Coquette Steps Calzado">
+        
     </div>
+
+    {% block product %}
+    {% endblock %}
 {% endblock %}

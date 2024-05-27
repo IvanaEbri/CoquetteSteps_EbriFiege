@@ -16,27 +16,33 @@
                 <h1>COQUETTESTEPS</h1>
             </div>
             <nav class="navigation">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Ver Todo</a></li>
-                    <li><a href="#">Borcegos</a></li>
-                    <li><a href="#">Botas</a></li>
-                    <li><a href="#">Zuecos</a></li>
-                    <li><a href="#">Texanas</a></li>
-                    <li><a href="#">Bucaneras</a></li>
-                </ul>
+                {% block nav %}
+                    <ul>
+                    {% if category  %}
+                        <li><a href="{% url 'home' %}">Inicio</a></li>
+                        {% for item in category %}
+                            <li><a href="{% url 'home_filter' item %}">{{item}}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                    </ul>
+                {% endblock %}
             </nav>
+
             <div class="user-actions">
                 <a href="#">Crear Cuenta</a>
                 <a href="#">Iniciar Sesión</a>
-                <a href="#"><span class="cart">🛒 0</span></a>
+                <a href="#"><span class="cart">🛒 {% block carro %}0{% endblock %}</span></a>
             </div>
         </div>
     </header>
+    
     {% block content %}
     {% endblock %}
+    
+   
     <footer>
         <p>&copy; 2024 CoquetteSteps. Todos los derechos reservados.</p>
     </footer>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

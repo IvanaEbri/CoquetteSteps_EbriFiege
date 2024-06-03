@@ -1,0 +1,10 @@
+{% load static %}
+<div class="category-card">
+    
+    <div class="category-image">
+        <a href="{% url 'home_filter' item %}">
+            <img src="{% static 'calzado/' %}{{ item.categoria }}.jpg" alt="{{ item.categoria }}" class="category-image">
+            <span class="category-name">{{item.categoria}}</span>
+        </a>
+    </div>
+</div>

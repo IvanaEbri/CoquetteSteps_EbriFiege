@@ -1,0 +1,34 @@
+{% extends 'home.html' %}
+
+{% block title %}Inicio - Coquette Steps{% endblock %}
+
+{% block product %}
+{% load static %}
+    <div class="products">
+        <h1>Destacados</h1>
+        <div class="product-cont">
+            {% if star_product %}
+                {% for item in star_product %}
+                    {% include 'card.html' %}
+                {% endfor %}
+            {% else %}
+                <p>"Lo sentimos, no hay productos disponibles"</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="categories">
+        {% if category %}
+        <div class="category-card">
+            <div class="category-image">
+                <a href="{% url 'home_filter' 'all' %}">
+                <img src="{% static 'calzado/' %}Calzados.jpg" alt="Todos los calzados" class="category-image">
+                <span class="category-name">Calzados</span>
+                </a>
+            </div>
+        </div>
+            {% for item in category %}
+                {% include 'cat_card.html' %}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

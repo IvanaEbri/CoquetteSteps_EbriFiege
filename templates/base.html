@@ -13,13 +13,14 @@
         </div>
         <div class="header-main">
             <div class="logo">
-                <h1>COQUETTESTEPS</h1>
+                <h1><a href="{% url 'home' %}">COQUETTESTEPS</a></h1>
             </div>
             <nav class="navigation">
                 {% block nav %}
                     <ul>
                     {% if category  %}
                         <li><a href="{% url 'home' %}">Inicio</a></li>
+                        <li><a href="{% url 'home_filter' 'all' %}">Calzados</a></li>
                         {% for item in category %}
                             <li><a href="{% url 'home_filter' item %}">{{item}}</a></li>
                         {% endfor %}
@@ -41,8 +42,26 @@
     
    
     <footer>
-        <p>&copy; 2024 CoquetteSteps. Todos los derechos reservados.</p>
+        <div class="footer-conteiner">
+            <div class="varios">
+                <p><a href="#">Métodos de pago</a></p>
+                <p><a href="#">Preguntas frecuentes</a></p>
+                <p><a href="#">Politica de devolución</a></p>
+                <p><a href="#">Boton de arrepentimiento</a></p>
+            </div>
+            <div class="social-media">
+                <p>Comunicate con nosotros</p>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        
+            <p>&copy; 2024 CoquetteSteps. Todos los derechos reservados.</p>
+        </div>
     </footer>
+
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://kit.fontawesome.com/122151608e.js" crossorigin="anonymous"></script>
 </body>
 </html>

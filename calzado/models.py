@@ -63,6 +63,12 @@ class Calzado(models.Model):
             self.foto_prod.name = f'{self.codigo}.jpg'  # Asignar el nombre del archivo basado en el código
         super().save(*args, **kwargs)
 
+    def get_color_display(self):
+        return dict(COLOR_CHOICE).get(self.color, "Desconocido")
+
+    def get_material_display(self):
+        return dict(MATERIAL_CHOICE).get(self.material, "Desconocido")
+
     def __str__(self) -> str:
         return (f'{self.codigo}: {self.nombre}')
 

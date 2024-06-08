@@ -2,6 +2,7 @@ from django.shortcuts import render
 from categoria.models import Categoria
 from calzado.models import Calzado
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.generic import TemplateView
 import random
 
@@ -52,3 +53,28 @@ class Home_filter (TemplateView):
 #         product= Calzado.objects.all()
 #         category_filter= "Calzado"
 #     return render(request, 'product.html',{"category":category,"category_filter":category_filter,"product":product})
+
+class Product(TemplateView):
+    template_name='product_one.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        cod = kwargs.get('product_code')
+        producto = Calzado.objects.filter(codigo=cod).first()
+
+        if producto is None or not producto.nombre:
+            return redirect("home")
+        
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cod = kwargs.get('product_code')
+        producto = Calzado.objects.filter(codigo=cod).first()
+
+        context['category'] = Categoria.objects.all()
+        context['product'] = producto
+        context['product_color'] = producto.get_color_display() 
+        context['product_material'] = producto.get_material_display() 
+        context['size']= [35,36,37,38,39,40]
+
+        return context

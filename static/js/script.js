@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
   
-  function formatPrice(price) {
+function formatPrice(price) {
     // Remover el signo de dólar y separar los decimales
     var parts = price.split(".");
     var integerPart = parts[0];
@@ -19,4 +19,26 @@ document.addEventListener("DOMContentLoaded", function() {
   
     // Agregar la coma como separador de decimales y el signo de dólar
     return integerPart + "," + decimalPart;
-  }
+};
+
+// Obtener todos los botones
+const botones = document.querySelectorAll('button');
+
+// Función para manejar el click en un botón
+function handleClick(event) {
+    // Remover la clase 'selected' de todos los botones
+    botones.forEach(boton => {
+        boton.classList.remove('selected');
+    });
+
+    // Agregar la clase 'selected' solo al botón clickeado
+    event.target.classList.add('selected');
+    const selectedSize = sizeElement.getAttribute('data-talle');
+    console.log('Talle seleccionado:', selectedSize);
+
+}
+
+// Asignar el evento 'click' a cada botón
+botones.forEach(boton => {
+  boton.addEventListener('click', handleClick);
+});

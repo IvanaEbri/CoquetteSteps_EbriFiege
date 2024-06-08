@@ -12,6 +12,9 @@ body {
     margin: 0;
     padding: 0;
 }
+header { 
+    width: 100%;
+}
 
 .top-bar {
     background-color: var(--light-pink-color);
@@ -123,6 +126,7 @@ footer {
     text-align: center;
     margin: 0px 5px 10px 5px;
   }
+
 a {
     text-decoration: none;
     color: var(--black-color);
@@ -231,4 +235,78 @@ footer a {
 
 .copy {
     text-align: center;
+}
+
+.page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.product-one {
+    padding: 10px;
+    margin: 15px 5px 5px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: fit-content;
+    max-width: 1000px;
+    align-items: center;
+    border: 1px solid var(--beige-color);
+    border-radius: 15px;
+
+}
+
+.product-one .product-image {
+    width: 40%;
+}
+
+.detail {
+    margin-left: 10px;
+    justify-content: space-around;
+}
+
+.product-one .product-price {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.product-description {
+    margin: 10px;
+}
+
+.product-description .color-material{
+    font-style: italic;
+}
+
+.size-all {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.size-button {
+    border: 1px solid var(--beige-color);
+    border-radius: 5px;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    text-align: center;
+    margin: 0px 2px ;   
+    background-color: var(--white-color);
+    color: var(--dark-coral);
+    font-size: 18px; 
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.size-button .selected {
+    background-color: var(--dark-coral);
+    color: var(--beige-color);
+    border-color: var(--dark-coral);
 }

@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+
+{% block title %}{{product.nombre}} - Coquette Steps{% endblock %}
+
+{% block product %}
+
+{% load static %}
+<div class="product-one">
+    
+    <img class="product-image" src="{% static 'calzado/' %}{{ product.tipo_calzado.categoria_nom }}/{{ product.tipo_calzado }}/{{ product.codigo }}/{{ product.codigo }}.jpg" alt="{{ product }}" >
+    <div class="detail">
+        <div class="product-title"><h1>{{product.nombre}}</h1></div>
+        <div class="product-price">${{product.precio}}</div>
+        <div class="product-description">
+            <p>{{product.descripcion}}</p>
+            <div class="color-material">
+                <p>{{product_color}}</p>
+                <p>{{product_material}}</p>
+            </div>
+            <div class="size-all">
+                {% for talle in size %}
+                    <button class="size-button" accesskey="{{ talle }}" data-talle="{{ talle }}">{{ talle }}</button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

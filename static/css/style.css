@@ -237,11 +237,16 @@ footer a {
     text-align: center;
 }
 
-.page-content {
+ .page-content {
+    display: flow;
+    width: 100%;
+}
+
+#product {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    padding: 10px;
 }
 
 .product-one {

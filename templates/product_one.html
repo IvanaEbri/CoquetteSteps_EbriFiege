@@ -5,6 +5,7 @@
 {% block product %}
 
 {% load static %}
+<article class="product" id="product">
 <div class="product-one">
     
     <img class="product-image" src="{% static 'calzado/' %}{{ product.tipo_calzado.categoria_nom }}/{{ product.tipo_calzado }}/{{ product.codigo }}/{{ product.codigo }}.jpg" alt="{{ product }}" >
@@ -25,5 +26,5 @@
         </div>
     </div>
 </div>
-
+</article>
 {% endblock %}

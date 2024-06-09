@@ -14,7 +14,6 @@ class Home (TemplateView):
         context["category"] = Categoria.objects.all()
         shoes= list(Calzado.objects.all())
         context["star_product"]= random.sample(shoes, min(len(shoes), 5))
-        print(context)
         return context
 
 # def home(request):

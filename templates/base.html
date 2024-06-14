@@ -5,6 +5,9 @@
     <title>{% block title %}Mi Sitio Web{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <header>
@@ -18,11 +21,11 @@
             <nav class="navigation">
                 {% block nav %}
                     <ul>
-                    {% if category  %}
+                    {% if category %}
                         <li><a href="{% url 'home' %}">Inicio</a></li>
                         <li><a href="{% url 'home_filter' 'all' %}">Calzados</a></li>
                         {% for item in category %}
-                            <li><a href="{% url 'home_filter' item %}">{{item}}</a></li>
+                            <li><a href="{% url 'home_filter' item %}">{{ item }}</a></li>
                         {% endfor %}
                     {% endif %}
                     </ul>
@@ -38,15 +41,15 @@
     </header>
         {% block content %}
         {% endblock %}
-   
+
     <footer>
         <div class="footer-conteiner">
             <div class="footer-column">
                 <div class="varios">
                     <p><a href="#">Métodos de pago</a></p>
                     <p><a href="#">Preguntas frecuentes</a></p>
-                    <p><a href="#">Politica de devolución</a></p>
-                    <p><a href="#">Boton de arrepentimiento</a></p>
+                    <p><a href="#">Política de devolución</a></p>
+                    <p><a href="#">Botón de arrepentimiento</a></p>
                 </div>
                 <div class="social-media">
                     <p>Comunicate con nosotros</p>
@@ -62,5 +65,9 @@
 
     <script src="{% static 'js/script.js' %}"></script>
     <script src="https://kit.fontawesome.com/122151608e.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

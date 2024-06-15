@@ -471,7 +471,7 @@ p, div, a :hover{
 
 }
 
-button.btn.login-button {
+button.btn.login-button, .add-cart {
     width: 100%; /* Ancho completo del botón */
     height: 40px; /* Espaciado interior */
     font-size: 16px; /* Tamaño de fuente */
@@ -499,4 +499,24 @@ button.btn.login-button {
 
 .logout-cancel button.btn.login-button {
     width: 100%; /* Asegura que el botón "Cancelar" tenga el mismo ancho */
+}
+
+/* añadido boton add-cart */
+.add-cart {
+    width: 30%;
+    margin-right: 5%;
+    margin-top: 10px;
+}
+
+.cont-add-cart {
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.detail-cont {
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }

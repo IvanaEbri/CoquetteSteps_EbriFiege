@@ -4,6 +4,7 @@
     --light-pink-color: #e099ad;
     --dark-coral: #ce5e7e ;
     --black-color : #000;
+    --error-red-color : rgb(220, 89, 89);
 }
 
 
@@ -63,7 +64,21 @@ header {
 
 h1 {
     font-weight: bold;
+    text-decoration: none;
+}
 
+h1 :hover{
+    text-decoration: none;
+    color: var(--black-color);
+}
+
+div :hover {
+    text-decoration: none;
+}
+
+.footer-conteiner a :hover, .footer-conteiner p :hover,  .footer-conteiner i :hover{
+    text-decoration: none;
+    color: var(--white-color);
 }
 
 .hero {
@@ -108,6 +123,10 @@ footer {
     text-align: center;
     padding: 10px 0;
     margin-top: 20px;
+}
+.bow {
+    margin: 0;
+    padding: 0;
 }
 
 .products{
@@ -358,7 +377,7 @@ footer a {
 }
 
 .carousel-caption {
-    color: #000; /* Texto negro */
+    color: var(--black-color); /* Texto negro */
     padding: 10px; /* Relleno interno */
     border-radius: 5px; /* Bordes redondeados */
     max-width: 300px; /* Ancho máximo del contenedor del texto */
@@ -367,7 +386,7 @@ footer a {
 }
 
 .carousel-caption h5, .carousel-caption p {
-    color: #000; /* Color del texto negro */
+    color: var(--black-color); /* Color del texto negro */
 }
 
 .carousel-inner {
@@ -389,62 +408,95 @@ p, div, a :hover{
 .auth-form {
     max-width: 600px; /* Ancho máximo del formulario */
     margin: 15px auto 0; /* Centrar el formulario horizontalmente */
-   height: 80%; 
-   
+    height: 80%; 
+    text-align: center;
 }
+
 .login-title {
+    text-transform: uppercase;
     text-align: center;
     font-weight: bold;
-    font-size: 28px;
+    font-size: 26px;
     color: var(--dark-coral);
+    margin: 20px 0 15px;
     
 }
+
+.login-form input.form-control {
+    flex-grow: 1; /* Permitir que el input crezca para llenar el espacio disponible */
+}
+
 .login-form {
     justify-content: center;
     align-items: center;
     display: flex;
-    flex-direction: row;
-    width: 50%;
+    width: 80%;
+    margin: 0 auto 15px; /* Centrar horizontalmente y añadir espacio inferior */
 }
+
 .form-control {
-    width: 100%; /* Ancho completo del campo de entrada */
     padding: 10px; /* Espaciado interior */
     font-size: 16px; /* Tamaño de fuente */
     border: 1px solid #ccc; /* Borde del campo de entrada */
     border-radius: 4px; 
+    margin-bottom: 15px;
+    margin-left: 10px;
 }
 
-.form-control {
-    margin-bottom: 15px;
-    margin-left: 5px;
-}
 .login-button {
     width: 100%; /* Ancho completo del botón */
-    padding: 6px; /* Espaciado interior */
     font-size: 16px; /* Tamaño de fuente */
     border-radius: 4px; /* Bordes redondeados */
     background-color: var(--dark-coral);
     color: var(--white-color);
 }
+
 .crear-cuenta, .tengo-cuenta {
     text-align: center; /* Centrar el texto */
     margin-top: 15px; /* Espacio superior */
+    margin-bottom: 5px;
 }
-.text-crear-cuenta, .text-tengo-cuenta {}
+.text-crear-cuenta, .text-tengo-cuenta {
+    color: var(--dark-coral);
+}
 .error-cont {
     margin-top: 15px; /* Espacio superior para mensajes de error */
 }
 .error-message {
-    color: red; /* Color de texto rojo para mensajes de error */
+    color: var(--error-red-color); /* Color de texto rojo para mensajes de error */
+    font-weight: bold;
+    text-align: center;
+    padding: 0;
+    margin-top: 0;
 
 }
-.btn .login-button {
+
+button.btn.login-button {
     width: 100%; /* Ancho completo del botón */
-    padding: 10px; /* Espaciado interior */
+    height: 40px; /* Espaciado interior */
     font-size: 16px; /* Tamaño de fuente */
     border-radius: 4px; /* Bordes redondeados */
     background-color: var(--dark-coral);
+    border: none;
+    box-shadow: none;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
     color: var(--white-color);
 }
-.logout-cancel {}
 
+.logout-cancel {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Ajustes adicionales */
+.logout-cancel a {
+    max-width: 600px; /* Ancho completo del enlace contenedor del botón */
+    width: 100%;
+}
+
+.logout-cancel button.btn.login-button {
+    width: 100%; /* Asegura que el botón "Cancelar" tenga el mismo ancho */
+}

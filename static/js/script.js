@@ -18,13 +18,8 @@ function formatPrice(price) {
     // Formatear la parte entera con separadores de miles
     integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   
-    // Si no hay parte decimal, agregar una coma al final
-    if (decimalPart === "") {
-      return integerPart + ",00";
-  } else {
-      // Agregar la coma como separador de decimales y el signo de dólar
-      return integerPart + "," + decimalPart;
-  }
+    // Agregar la coma como separador de decimales y el signo de dólar
+    return integerPart + "," + decimalPart;
 };
 
 // Obtener todos los botones

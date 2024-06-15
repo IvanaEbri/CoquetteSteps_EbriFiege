@@ -1,0 +1,21 @@
+{% article product %}
+
+{% load static %}
+<article class="product" id="product">
+<div class="product-one">
+    
+    <img class="product-image" src="{% static 'calzado/' %}{{ product.tipo_calzado.categoria_nom }}/{{ product.tipo_calzado }}/{{ product.codigo }}/{{ product.codigo }}.jpg" alt="{{ product }}" >
+    <div class="detail-cont">
+        <div class="detail">
+            <div class="product-title"><h1>{{product.nombre}}</h1></div>
+            
+            <div class="product-price">${{product.precio}}</div>
+        </div>
+        <div>
+            <div class="product-size">Talle: {{product.talle}}</div>
+            <div class="product-trash"><i class="fa-solid fa-trash"></i></div>
+        </div>
+    </div>
+</div>
+</article>
+{% endblock %}

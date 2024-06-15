@@ -24,7 +24,8 @@ class RegistrationForm(UserCreationForm):
         )
 
     username = forms.CharField(label=_("Nombre de usuario"), max_length=150, help_text=_("Requerido. 150 caracteres o menos. Letras, dígitos y @/./+/-/_ solamente."))
-    cliente = forms.BooleanField(initial=True)
+    cliente = forms.BooleanField(widget=forms.HiddenInput(), required=False, initial=True)
+    activo = forms.BooleanField(widget=forms.HiddenInput(), required=False, initial=True)
 
 
     class Meta:
@@ -34,6 +35,8 @@ class RegistrationForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data["email"]
+        user.cliente = True
+        user.activo = True
         if commit:
             user.save()
         return user

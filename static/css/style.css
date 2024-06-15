@@ -349,8 +349,8 @@ footer a {
 
 /* Ajustes de tamaño para las imágenes del carrusel */
 .carousel .carousel-item img {
-    max-width: 100px; /* Ancho máximo de las imágenes */
-    max-height: 100px; /* Altura máxima de las imágenes */
+    max-width: 200px; /* Ancho máximo de las imágenes */
+    max-height: 200px; /* Altura máxima de las imágenes */
     width: auto; /* Ancho automático para mantener la proporción */
     height: auto; /* Altura automática para mantener la proporción */
     display: block; /* Mostrar como bloque */
@@ -386,15 +386,119 @@ p, div, a :hover{
 
 }
 
-.auth-form {}
-.login-title {}
-.login-form {}
-.form-control {}
-.login-button {}
-.crear-cuenta, .tengo-cuenta {}
-.text-crear-cuenta, .text-tengo-cuenta {}
-.error-cont {}
-.error-message {}
-.btn .login-button {}
-.logout-cancel {}
+.auth-form {
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin: 15px auto 0; /* Centrar el formulario horizontalmente */
+    height: 80%; 
+    text-align: center;
+}
+
+.login-title {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    font-size: 26px;
+    color: var(--dark-coral);
+    margin: 20px 0 15px;
+    
+}
+
+.login-form input.form-control {
+    flex-grow: 1; /* Permitir que el input crezca para llenar el espacio disponible */
+}
+
+.login-form {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 80%;
+    margin: 0 auto 15px; /* Centrar horizontalmente y añadir espacio inferior */
+}
+
+.form-control {
+    padding: 10px; /* Espaciado interior */
+    font-size: 16px; /* Tamaño de fuente */
+    border: 1px solid #ccc; /* Borde del campo de entrada */
+    border-radius: 4px; 
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+.login-button {
+    width: 100%; /* Ancho completo del botón */
+    font-size: 16px; /* Tamaño de fuente */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: var(--dark-coral);
+    color: var(--white-color);
+}
+
+.crear-cuenta, .tengo-cuenta {
+    text-align: center; /* Centrar el texto */
+    margin-top: 15px; /* Espacio superior */
+    margin-bottom: 5px;
+}
+.text-crear-cuenta, .text-tengo-cuenta {
+    color: var(--dark-coral);
+}
+.error-cont {
+    margin-top: 15px; /* Espacio superior para mensajes de error */
+}
+.error-message {
+    color: var(--error-red-color); /* Color de texto rojo para mensajes de error */
+    font-weight: bold;
+    text-align: center;
+    padding: 0;
+    margin-top: 0;
+
+}
+
+button.btn.login-button, .add-cart {
+    width: 100%; /* Ancho completo del botón */
+    height: 40px; /* Espaciado interior */
+    font-size: 16px; /* Tamaño de fuente */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: var(--dark-coral);
+    border: none;
+    box-shadow: none;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    color: var(--white-color);
+}
+
+.logout-cancel {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Ajustes adicionales */
+.logout-cancel a {
+    max-width: 600px; /* Ancho completo del enlace contenedor del botón */
+    width: 100%;
+}
+
+.logout-cancel button.btn.login-button {
+    width: 100%; /* Asegura que el botón "Cancelar" tenga el mismo ancho */
+}
+
+/* añadido boton add-cart */
+.add-cart {
+    width: 30%;
+    margin-right: 5%;
+    margin-top: 10px;
+}
+
+.cont-add-cart {
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.detail-cont {
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
 

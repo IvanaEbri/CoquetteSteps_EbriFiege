@@ -4,27 +4,25 @@
 
 {% block product %}
     {% load static %}
-    <div class="products">
+    <div class="products container">
         <h1>Destacados</h1>
-        <div id="starProductCarousel" class="carousel slide" data-ride="carousel">
+        <div id="starProductCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
             <div class="carousel-inner">
                 {% if star_product %}
                     {% for item in star_product %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                        <!-- <img src="{% static 'calzado/' %}{{ item.tipo_calzado.categoria_nom }}/{{ item.tipo_calzado }}/{{ item.codigo }}/{{ item.codigo }}.jpg" class="d-block mx-auto carousel-img" alt="{{ item.nombre }}">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>{{ item.nombre }}</h5>
-                            <p><strong>Precio: </strong>${{ item.precio }}</p>
-                            <p>{{ item.descripcion }}</p>
-                        </div> -->
-                        {% include 'card.html' %}   
+                        <div class="d-flex justify-content-center">
+                            {% include 'card.html' %}
+                        </div>
                     </div>
                     {% endfor %}
                 {% else %}
                     <div class="carousel-item active">
-                        <img src="{% static 'path/to/default_image.jpg' %}" class="d-block mx-auto carousel-img" alt="No hay productos">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>No hay productos disponibles</h5>
+                        <div class="d-flex justify-content-center">
+                            <img src="{% static 'path/to/default_image.jpg' %}" class="d-block carousel-img" alt="No hay productos">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>No hay productos disponibles</h5>
+                            </div>
                         </div>
                     </div>
                 {% endif %}
@@ -40,7 +38,7 @@
         </div>
     </div>
 
-    <div class="categories">
+    <div class="categories container">
         {% if category %}
             <div class="category-card">
                 <div class="category-image">
@@ -56,3 +54,4 @@
         {% endif %}
     </div>
 {% endblock %}
+

@@ -1,30 +1,24 @@
 document.addEventListener("DOMContentLoaded", function() {
     var priceElements = document.getElementsByClassName("product-price");
     for (var i = 0; i < priceElements.length; i++) {
-      var priceElement = priceElements[i];
-      var price = priceElement.textContent;
-      var formattedPrice = formatPrice(price);
-      priceElement.textContent = formattedPrice;
+    var priceElement = priceElements[i];
+    var price = priceElement.textContent;
+    var formattedPrice = formatPrice(price);
+    priceElement.textContent = formattedPrice;
     }
-  });
-  
+});
+
 function formatPrice(price) {
     // Remover el signo de dólar y separar los decimales
     price = price.toString();
     var parts = price.split(".");
     var integerPart = parts[0];
     var decimalPart = parts.length > 1 ? parts[1] : "";
-  
+
     // Formatear la parte entera con separadores de miles
     integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  
-    // Si no hay parte decimal, agregar una coma al final
-    if (decimalPart === "") {
-      return integerPart + ",00";
-  } else {
-      // Agregar la coma como separador de decimales y el signo de dólar
-      return integerPart + "," + decimalPart;
-  }
+// Agregar la coma como separador de decimales y el signo de dólar
+    return integerPart + "," + decimalPart;
 };
 
 // Obtener todos los botones
@@ -46,5 +40,5 @@ function handleClick(event) {
 
 // Asignar el evento 'click' a cada botón
 botones.forEach(boton => {
-  boton.addEventListener('click', handleClick);
+boton.addEventListener('click', handleClick);
 });

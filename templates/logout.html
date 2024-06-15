@@ -4,11 +4,11 @@
 {% block content %}
 {% load static %}
 <div class="auth-form">
-    <h2 class="login-title">¿Estás seguro de que quieres cerrar sesión?</h2>
+    <h2 class="login-title">¿Quieres cerrar sesión?</h2>
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <div class="login-button">
-            <button type="submit" class="btn login-button">Confirmar Logout</button>
+            <button type="submit" class="btn login-button">Cerrar Sesion</button>
         </div>
     </form>
     

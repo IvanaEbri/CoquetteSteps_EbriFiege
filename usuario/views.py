@@ -54,6 +54,7 @@ class RegistrationView(CreateView):
     success_url = reverse_lazy("login")
     template_name = "register.html"
 
+
     def form_valid(self, form):
         # Procesar el formulario si es válido
         user = form.save(commit=False)
@@ -65,5 +66,5 @@ class RegistrationView(CreateView):
         # Agregar mensajes de error a la lista de mensajes
         for field, errors in form.errors.items():
             for error in errors:
-                messages.error(self.request, f"{error}")
+                messages.error(self.request, f"{field}: {error}")
         return super().form_invalid(form)

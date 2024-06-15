@@ -17,7 +17,12 @@ function formatPrice(price) {
 
     // Formatear la parte entera con separadores de miles
     integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+<<<<<<< HEAD
 // Agregar la coma como separador de decimales y el signo de dólar
+=======
+  
+    // Agregar la coma como separador de decimales y el signo de dólar
+>>>>>>> 8ed89ca4d33775ba2e8c6e1b2f6c1d983e61e519
     return integerPart + "," + decimalPart;
 };
 

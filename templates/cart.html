@@ -1,0 +1,28 @@
+{% extends 'home.html' %}
+
+{% block title %}Mi Carro 🛒 - Coquette🎀​Steps{% endblock %}
+
+{% block product %}
+
+{% load static %}
+<div class="cart">
+    <h1>Mi Carro</h1>
+    <p>🎀   🛒  🎀</p>
+
+    <div class="total-cont">
+        <h3>Total:</h3>
+        <h3>{{total-compra}}</h3>
+    </div>
+    <div class="detail-cart">
+        <div class="cart-products">
+            {% for procuct in cart %}
+                {% include 'product_card.html'}
+            {% endfor %}
+        </div>
+        <div class="cont-pagar">
+            <button class="pagar">Confirmar compra</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

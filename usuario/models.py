@@ -10,3 +10,14 @@ class Usuario(AbstractUser):
 
     def __str__(self) -> str:
         return self.username
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:  # El objeto se está creando
+            self.cliente = True
+            self.activo = True
+        super(Usuario, self).save(*args, **kwargs)
+
+    class Meta:
+        permissions = [
+            ("change_cliente_activo", "Can change cliente and activo status"),
+        ]

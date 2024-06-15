@@ -315,3 +315,16 @@ footer a {
     color: var(--beige-color);
     border-color: var(--dark-coral);
 }
+
+.auth-form {}
+.login-title {}
+.login-form {}
+.form-control {}
+.login-button {}
+.crear-cuenta, .tengo-cuenta {}
+.text-crear-cuenta, .text-tengo-cuenta {}
+.error-cont {}
+.error-message {}
+.btn .login-button {}
+.logout-cancel {}
+

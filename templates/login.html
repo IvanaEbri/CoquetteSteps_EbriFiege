@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar Sesion - 👠​CS👡  {% endblock %}
+{% block content %}
+{% load static %}
+<div class="auth-form">
+    <h2 class="login-title">Inicar Sesion</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="login-form">
+            <label><strong>Nombre de usuario</strong></label>
+            <input
+                type="text"
+                class="form-control"
+                id="{{ form.username.id_for_label }}"
+                name="{{ form.username.name }}"
+                placeholder="Nombre de usuario"
+            />
+        </div>
+        <div class="login-form">
+            <label><strong>Contraseña</strong></label>
+            <input
+                type="password"
+                class="form-control"
+                id="{{ form.password.id_for_label }}"
+                name="{{ form.password.name }}"
+                placeholder="Contraseña"
+            />
+        </div class="login-button">
+        <button type="submit" class="btn login-button">Ingresar</button>
+    </form>
+    <div class="crear-cuenta">
+        <p>
+            ¿Aún no tenes cuenta?
+            <a class="text-crear-cuenta" href="{% url 'register' %}"> ¡Crea una!</a>
+        </p>
+    </div>
+    {% for message in messages %}
+        <div class="error-cont">
+            <p class="error-message">{{ message }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %} 

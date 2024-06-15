@@ -7,4 +7,4 @@ from movimiento.models import Movimiento
 class MovimientoAdmin(admin.ModelAdmin):
     list_display = ('usuario','fecha', 'calzado','talle','cantidad','motivo','activo',)
     search_fields = ('usuario','fecha','calzado__nombre','calzado__codigo',)
-    list_filter = ('usuario__user','fecha', 'calzado__nombre','talle','calzado__tipo_calzado__categoria_nom','calzado__tipo_calzado__tipo','motivo','activo',)
+    list_filter = ('usuario__username','fecha', 'calzado__nombre','talle','calzado__tipo_calzado__categoria_nom','calzado__tipo_calzado__tipo','motivo','activo',)

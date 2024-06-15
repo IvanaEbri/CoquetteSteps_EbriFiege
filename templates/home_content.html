@@ -11,12 +11,13 @@
                 {% if star_product %}
                     {% for item in star_product %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                        <img src="{% static 'calzado/' %}{{ item.tipo_calzado.categoria_nom }}/{{ item.tipo_calzado }}/{{ item.codigo }}/{{ item.codigo }}.jpg" class="d-block mx-auto carousel-img" alt="{{ item.nombre }}">
+                        <!-- <img src="{% static 'calzado/' %}{{ item.tipo_calzado.categoria_nom }}/{{ item.tipo_calzado }}/{{ item.codigo }}/{{ item.codigo }}.jpg" class="d-block mx-auto carousel-img" alt="{{ item.nombre }}">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ item.nombre }}</h5>
                             <p><strong>Precio: </strong>${{ item.precio }}</p>
                             <p>{{ item.descripcion }}</p>
-                        </div>
+                        </div> -->
+                        {% include 'card.html' %}   
                     </div>
                     {% endfor %}
                 {% else %}

@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
 function formatPrice(price) {
     // Remover el signo de dólar y separar los decimales
+    price = price.toString();
     var parts = price.split(".");
     var integerPart = parts[0];
     var decimalPart = parts.length > 1 ? parts[1] : "";
@@ -17,8 +18,13 @@ function formatPrice(price) {
     // Formatear la parte entera con separadores de miles
     integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   
-    // Agregar la coma como separador de decimales y el signo de dólar
-    return integerPart + "," + decimalPart;
+    // Si no hay parte decimal, agregar una coma al final
+    if (decimalPart === "") {
+      return integerPart + ",00";
+  } else {
+      // Agregar la coma como separador de decimales y el signo de dólar
+      return integerPart + "," + decimalPart;
+  }
 };
 
 // Obtener todos los botones

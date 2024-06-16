@@ -5,9 +5,13 @@ from .models import Usuario
 from django.db import IntegrityError, transaction
 
 class UsuarioAdmin(BaseUserAdmin):
+    model = Usuario
+    list_display = ('username', 'email', 'cliente', 'activo')
+    list_filter = ('cliente', 'activo', 'is_staff')
+
     fieldsets = (
         (None, {
-            'fields': ('username', 'password')  # Campos requeridos para AbstractUser
+            'fields': ('username', 'password')
         }),
         ('Información personal', {
             'fields': ('first_name', 'last_name', 'email', 'cliente', 'activo')
@@ -20,19 +24,28 @@ class UsuarioAdmin(BaseUserAdmin):
         }),
     )
 
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        # Deshabilitar el campo cliente si el usuario es cliente y no es superusuario
+        if obj and obj.cliente and not request.user.is_superuser:
+            form.base_fields['cliente'].disabled = True
+        return form
+
     def save_model(self, request, obj, form, change):
-        try:
-            obj.save()
-        except ValidationError as e:
-            self.message_user(request, f"Error al guardar: {e}", level='ERROR')
+        # Verificar si se intenta cambiar el campo cliente
+        if 'cliente' in form.changed_data:
+            # Si es cliente y no es superusuario, no permitir el cambio
+            if obj.cliente and not request.user.is_superuser:
+                raise PermissionDenied("No se puede cambiar el estado de 'cliente' si el usuario es cliente.")
+            # Si no tiene permiso, no permitir el cambio
+            if not request.user.has_perm('usuario.change_cliente_activo') and not request.user.is_superuser:
+                raise PermissionDenied("No tienes permiso para cambiar el estado de 'cliente'.")
+        if 'activo' in form.changed_data and not request.user.has_perm('usuario.change_cliente_activo'):
+            raise PermissionDenied("No tienes permiso para cambiar el estado de 'activo'.")
         try:
             with transaction.atomic():
-                if 'cliente' in form.changed_data or 'activo' in form.changed_data:
-                    if not request.user.has_perm('usuario.change_cliente_activo'):
-                        raise PermissionDenied("No tienes permiso para cambiar el estado de 'cliente' y 'activo'.")
                 super().save_model(request, obj, form, change)
         except IntegrityError as e:
-            print(f"IntegrityError: {e}")
-            # Manejar el error según sea necesario
+            self.message_user(request, f"Error al guardar: {e}", level='ERROR')
 
 admin.site.register(Usuario, UsuarioAdmin)

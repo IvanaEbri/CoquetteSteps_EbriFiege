@@ -84,67 +84,34 @@ function addToCart(talle) {
 
 /*----- UPDATE VIEJO ------ */
 document.addEventListener("DOMContentLoaded", function () {
-    // Get all product price elements with class "product-price"
-    var priceElements = document.getElementsByClassName("product-price");
+    const sizeButtons = document.querySelectorAll('.size-button');
+    const addToCartButton = document.getElementById('add-to-cart');
+    let selectedSize = null;
 
-    // Loop through each price element
-    for (var i = 0; i < priceElements.length; i++) {
-    var priceElement = priceElements[i];
+    // Manejar clic en botones de tamaño
+    sizeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            // Remover la clase 'selected' de todos los botones
+            sizeButtons.forEach(btn => btn.classList.remove('selected'));
+            
+            // Agregar la clase 'selected' al botón clickeado
+            button.classList.add('selected');
+            
+            // Obtener el tamaño seleccionado
+            selectedSize = button.getAttribute('data-talle');
+        });
+    });
 
-      // Extract the price text content
-      var price = priceElement.textContent.trim(); // Remove leading/trailing whitespace
-
-      // Format the price using the formatPrice function
-    var formattedPrice = formatPrice(price);
-
-      // Update the price element's text content with the formatted price
-    priceElement.textContent = formattedPrice;
-    }
+    // Manejar clic en el botón 'Añadir al carrito'
+    addToCartButton.addEventListener('click', function () {
+        if (selectedSize) {
+            console.log(`Agregando producto con tamaño ${selectedSize} al carrito`);
+            
+            // Aquí iría tu lógica para agregar el producto al carrito, por ejemplo, enviar una solicitud al servidor
+            // Simularemos una alerta por ahora
+            alert(`Producto con tamaño ${selectedSize} agregado al carrito`);
+        } else {
+            alert('Por favor, selecciona un tamaño antes de agregar al carrito');
+        }
+    });
 });
-
-function formatPrice(price) {
-    // Convert price to a string and split on decimal point
-    price = price.toString().split(".");
-
-    // Extract integer and decimal parts (handling missing decimal)
-    var integerPart = price[0];
-    var decimalPart = (price.length > 1) ? price[1] : "";
-
-    // Format the integer part with thousands separators
-    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-    // Ensure at least two decimal places (add leading zeros if needed)
-    decimalPart = decimalPart.padStart(2, "0");
-
-    // Combine formatted parts with comma and dollar sign
-    return `$${integerPart},${decimalPart}`;
-}
-
-  // Assuming you have a class "size-button" for size buttons
-const botones_talle = document.querySelectorAll('.size-button');
-
-  // Function to handle size button click
-function handleClick(event) {
-    // Remove the 'selected' class from all size buttons
-    botones_talle.forEach(boton => boton.classList.remove('selected'));
-
-    // Add the 'selected' class to the clicked button
-event.target.classList.add('selected');
-
-    // Get the data-talle attribute value from the clicked button
-    const selectedSize = event.target.getAttribute('data-talle');
-
-    // Call the addToCart function with the selected size
-    addToCart(selectedSize);
-}
-
-  // Assign click event listener to each size button
-botones_talle.forEach(boton => boton.addEventListener('click', handleClick));
-
-  // Function to add product to cart (implementation details depend on your backend)
-function addToCart(talle) {
-    // Replace this with your actual logic for sending data to the server
-    // (e.g., using fetch or an AJAX library)
-    console.log(`Adding product with size ${talle} to cart (server interaction needed)`);
-    alert(`Producto con talle ${talle} agregado al carrito (pendiente de integración con el servidor)`);
-}

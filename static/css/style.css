@@ -49,11 +49,12 @@ header {
     margin: 0 10px;
 }
 
-.navigation a {
+.navigation a , .navigation a :hover{
     text-decoration: none;
     color: var(--black-color);
     font-weight: bold;
 }
+
 
 .user-actions a {
     margin: 0 10px;
@@ -138,7 +139,7 @@ footer {
     margin: 0px 5px 10px 5px;
 }
 
-a {
+a, a :hover {
     text-decoration: none;
     color: var(--black-color);
 }
@@ -226,6 +227,10 @@ footer {
     font-size: 24px; /* tamaño de los íconos */
     margin-left: 2.5px;
     margin-right: 2.5px;
+}
+
+i :hover {
+    color: var(--white-color);
 }
 footer a {
     color: var(--white-color);

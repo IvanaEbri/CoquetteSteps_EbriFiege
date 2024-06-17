@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, AnonymousUser
+from carrito.models import Carrito
 
 class Usuario(AbstractUser):
     email = models.EmailField(unique=True, null=False, blank=False)
@@ -14,7 +15,14 @@ class Usuario(AbstractUser):
             self.cliente = True
         super(Usuario, self).save(*args, **kwargs)
 
-    class Meta:
-        permissions = [
-            ("change_cliente_activo", "Can change cliente and activo status"),
-        ]
+    def productos_carro (self):
+        return Carrito.objects.filter(usuario=self, activo=True, comprado=False)
+
+    def carrito (self):
+        return self.productos_carro().count()
+
+
+class Meta:
+    permissions = [
+        ("change_cliente_activo", "Can change cliente and activo status"),
+    ]

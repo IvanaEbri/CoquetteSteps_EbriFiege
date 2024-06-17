@@ -4,7 +4,11 @@ from calzado.models import Calzado
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import TemplateView
+from usuario.models import Usuario
 import random
+from django.contrib.auth.models import AnonymousUser
+from django.views.decorators.http import require_POST
+import json
 
 class Home (TemplateView):
     template_name = "home_content.html"
@@ -14,6 +18,9 @@ class Home (TemplateView):
         context["category"] = Categoria.objects.all()
         shoes= list(Calzado.objects.all())
         context["star_product"]= random.sample(shoes, min(len(shoes), 5))
+        usuario_act = self.request.user
+        if usuario_act.is_authenticated:
+            context ["cant_prduct"] = usuario_act.carrito
         return context
 
 # def home(request):
@@ -29,7 +36,9 @@ class Home_filter (TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         cat = kwargs.get('category_filter')
-        
+        usuario_act = self.request.user
+        if usuario_act.is_authenticated:
+            context ["cant_prduct"] = usuario_act.carrito
         context['category'] = Categoria.objects.all()
 
         if cat!='all':
@@ -75,5 +84,29 @@ class Product(TemplateView):
         context['product_color'] = producto.get_color_display() 
         context['product_material'] = producto.get_material_display() 
         context['size']= [35,36,37,38,39,40]
+        usuario_act = self.request.user
+        if usuario_act.is_authenticated:
+            context ["cant_prduct"] = usuario_act.carrito
 
         return context
+
+    @require_POST
+    def agregar_al_carro(request):
+        data = json.loads(request.body)
+        talle = data.get('talle')
+
+        if self.request.user.is_authenticated:
+            try:
+                with transaction.atomic():
+                #creo un registro en carro
+                    nuevo_registro = Carrito.objects.create(
+                            usuario = self.request.user,
+                            calzado = self.request.producto,
+                            talle = talle,
+                            comprado = False,
+                            activo = True
+                        )
+            except Exception as e:
+                messages.error(request, f"Hubo un error al añadir al carrito, favor intente nuevamente")
+        else:
+            return redirect("login")

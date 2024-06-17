@@ -23,6 +23,7 @@ urlpatterns = [
     #path('',home,name='home'),
     path('Calzado/', include('calzado.urls')),
     path('User/', include('usuario.urls')),
+    path('Carrito/', include('carrito.urls')),
     path('', Home.as_view(), name='home'), #AL FINAL
 ]
 

@@ -11,18 +11,30 @@
 
     <div class="total-cont">
         <h3>Total:</h3>
-        <h3>{{total-compra}}</h3>
+        <h3>$ {{total_compra}}</h3>
     </div>
     <div class="detail-cart">
         <div class="cart-products">
-            {% for procuct in cart %}
-                {% include 'product_card.html'}
-            {% endfor %}
+            {% if cart %}
+                {% for product in cart %}
+                    {% include 'product_card.html'}
+                {% endfor %}
+            {% else %}
+                <span>Aún no añadiste productos al carro</span>
+            {% endif %}
         </div>
         <div class="cont-pagar">
-            <button class="pagar">Confirmar compra</button>
+            <button class="pagar" type="submit" 
+            {% if cart %} disabled {% endif %}>
+                Confirmar compra
+            </button>
         </div>
     </div>
+    {% for message in messages %}
+        <div class="error-cont">
+            <p class="error-message">{{ message }}</p>
+        </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

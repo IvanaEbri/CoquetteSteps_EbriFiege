@@ -40,7 +40,13 @@
                     <a href="{% url 'register' %}">Crear Cuenta</a>
                     <a href="{% url 'login' %}">Iniciar Sesión</a>
                 {% endif %}
-                <a href="#"><span class="cart">🛒 {% block carro %}0{% endblock %}</span></a>
+                <a href="{% url 'carrito' %}"><span class="cart">🛒 {% block carro %} 
+                    {% if cant_prduct %}
+                        {{cant_prduct}}
+                    {% else %}
+                        0
+                    {% endif %}
+                {% endblock %}</span></a>
             </div>
         </div>
     </header>

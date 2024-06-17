@@ -23,23 +23,58 @@ function formatPrice(price) {
 };
 
 // Obtener todos los botones
-const botones = document.querySelectorAll('button');
+const botones_talle = document.querySelectorAll('.size-button');
 
 // Función para manejar el click en un botón
 function handleClick(event) {
     // Remover la clase 'selected' de todos los botones
-    botones.forEach(boton => {
+    botones_talle.forEach(boton => {
         boton.classList.remove('selected');
     });
 
     // Agregar la clase 'selected' solo al botón clickeado
     event.target.classList.add('selected');
-    const selectedSize = sizeElement.getAttribute('data-talle');
-    console.log('Talle seleccionado:', selectedSize);
-
 }
 
 // Asignar el evento 'click' a cada botón
-botones.forEach(boton => {
+botones_talle.forEach(boton => {
 boton.addEventListener('click', handleClick);
 });
+
+const addToCartButton = document.getElementById('add-to-cart');
+
+addToCartButton.addEventListener('click', function () {
+    const selectedButton = document.querySelector('.size-button.selected');
+    if (!selectedButton) {
+        alert('Por favor selecciona el talle.');
+        return;
+    }
+    const selectedSize = selectedButton.getAttribute('data-talle');
+    addToCart(selectedSize);
+});
+
+const selectedButton = document.querySelector('.size-button.selected');
+
+function addToCart(talle) {
+    fetch('/agregar_al_carro/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ size: talle })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al añadir al carro');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Producto añadido al carro:', data);
+        alert('Producto añadido al carro.');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al añadir al carro.' + selectedButton);
+    });
+};

@@ -32,3 +32,6 @@ class Movimiento(models.Model):
 
     def __str__(self):
         return (f'{self.id}, {self.usuario.user}, {self.calzado.codigo}')
+
+    def get_motivo(self):
+        return dict(MOTIVO_CHOICE).get(self.motivo, "Desconocido")

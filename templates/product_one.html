@@ -27,9 +27,14 @@
             </div>
         </div>
         <div class="cont-add-cart">
-            <button class="add-cart">Añadir al 🛒</button>
+            <button class="add-cart" id="add-to-cart">Añadir al 🛒</button>
         </div>
     </div>
 </div>
 </article>
+{% for message in messages %}
+<div class="error-cont">
+    <p class="error-message">{{ message }}</p>
+</div>
+{% endfor %}
 {% endblock %}

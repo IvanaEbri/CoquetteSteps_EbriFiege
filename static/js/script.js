@@ -114,10 +114,13 @@ function formatPrice(price) {
     integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
     // Ensure at least two decimal places (add leading zeros if needed)
-    decimalPart = decimalPart.padStart(2, "0");
+    // if (decimalPart=="") {
+    //    decimalPart= decimalPart.padStart(2, "0")
+    // };
+    
 
     // Combine formatted parts with comma and dollar sign
-    return `$${integerPart},${decimalPart}`;
+    return `${integerPart}${decimalPart}`;
 }
 
   // Assuming you have a class "size-button" for size buttons

@@ -16,6 +16,12 @@ header {
     width: 100%;
 }
 
+
+a, a :hover {
+    text-decoration: none;
+    color: var(--black-color);
+}
+
 .top-bar {
     background-color: var(--light-pink-color);
     color: var(--white-color);
@@ -139,10 +145,6 @@ footer {
     margin: 0px 5px 10px 5px;
 }
 
-a, a :hover {
-    text-decoration: none;
-    color: var(--black-color);
-}
 
 .product-image {
     width: 100%;
@@ -205,6 +207,10 @@ a, a :hover {
     font-weight: bold;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
+
+a.category-name :hover {
+    color: var(--light-pink-color);
+}
 /* fin card categoria */
 
 /* footer */
@@ -229,7 +235,7 @@ footer {
     margin-right: 2.5px;
 }
 
-i :hover {
+i.social-media :hover {
     color: var(--white-color);
 }
 footer a {

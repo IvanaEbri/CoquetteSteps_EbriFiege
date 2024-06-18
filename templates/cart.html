@@ -6,18 +6,19 @@
 
 {% load static %}
 <div class="cart">
-    <h1>Mi Carro</h1>
-    <p>🎀   🛒  🎀</p>
-
-    <div class="total-cont">
-        <h3>Total:</h3>
-        <h3>$ {{total_compra}}</h3>
+    <div class="title-cart">
+        <h1>Mi Carro</h1>
+        <p>🎀   🛒  🎀</p>
+        <div class="total-cont">
+            <h3>Total:</h3>
+            <h3>$ {{total_compra}}</h3>
+        </div>
     </div>
     <div class="detail-cart">
         <div class="cart-products">
             {% if cart %}
                 {% for product in cart %}
-                    {% include 'product_card.html'}
+                    {% include 'product_card.html' %}
                 {% endfor %}
             {% else %}
                 <span>Aún no añadiste productos al carro</span>

@@ -341,7 +341,7 @@ footer a {
 }
 
 
-.size-button .selected {
+.size-button.selected {
     background-color: var(--dark-coral);
     color: var(--beige-color);
     border-color: var(--dark-coral);
@@ -513,3 +513,102 @@ button.btn.login-button, .add-cart {
     padding: 10px;
 }
 
+/* CARRITO DE COMPRA */
+div.cart {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px 10px;
+}
+.title-cart {
+    width: 100%;
+}
+h1.title-cart.cart{
+    margin: 15px 0 0;
+    text-transform: uppercase;
+    color: var(--dark-coral);
+    align-self: center;
+}
+p.title-cart.cart{
+    margin: 0;
+    font-size: 20px;
+}
+.total-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 60%;
+}
+
+.product-one.carro-product{
+    max-height: 200px;
+    min-height: 50px;
+    padding: 5px;
+    height: min-content;
+}
+
+.product-one.carro-product.product-image{
+    flex: 1;
+    min-width: 50px; /* Ajustar según sea necesario */
+    width: 20%;
+}
+.detail-cont {
+    display: flex;
+    flex: 2;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+}
+
+.column.detail-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail.column {
+    padding: 0;
+    margin: 0;
+}
+
+.column.product-title{
+    text-align: start;
+    margin: 0;
+}
+
+.column.product-price {
+    text-align: start;
+    margin-top: 5px;
+}
+
+.product-size, .product-trash {
+    text-align: end;
+    margin-top: 5px;
+}
+
+.product-trash {
+    cursor: pointer;
+    color: var(--black-color); /* Opcional: color del icono de la papelera */
+}
+
+.cont-pagar {
+    width: 80%;
+}
+.pagar {
+    width: 100%; /* Ancho completo del botón */
+    font-size: 16px; /* Tamaño de fuente */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: var(--dark-coral);
+    color: var(--white-color);
+    width: 100%; /* Ancho completo del botón */
+    height: 40px; /* Espaciado interior */
+    border: none;
+    box-shadow: none;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    color: var(--white-color);
+}

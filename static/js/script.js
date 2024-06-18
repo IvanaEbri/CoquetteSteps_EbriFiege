@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const addToCartButton = document.getElementById('add-to-cart');
     let selectedSize = null;
 
+    /*----- FUNCION BOTONES TALLE ------ */
     // Manejar clic en botones de tamaño
     sizeButtons.forEach(button => {
         button.addEventListener('click', function () {

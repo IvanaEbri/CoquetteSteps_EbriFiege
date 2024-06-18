@@ -84,46 +84,6 @@ function addToCart(talle) {
 
 /*----- UPDATE VIEJO ------ */
 document.addEventListener("DOMContentLoaded", function () {
-    // Get all product price elements with class "product-price"
-    var priceElements = document.getElementsByClassName("product-price");
-
-    // Loop through each price element
-    for (var i = 0; i < priceElements.length; i++) {
-    var priceElement = priceElements[i];
-
-      // Extract the price text content
-      var price = priceElement.textContent.trim(); // Remove leading/trailing whitespace
-
-      // Format the price using the formatPrice function
-    var formattedPrice = formatPrice(price);
-
-      // Update the price element's text content with the formatted price
-    priceElement.textContent = formattedPrice;
-    }
-});
-
-function formatPrice(price) {
-    // Convert price to a string and split on decimal point
-    price = price.toString().split(".");
-
-    // Extract integer and decimal parts (handling missing decimal)
-    var integerPart = price[0];
-    var decimalPart = (price.length > 1) ? price[1] : "";
-
-    // Format the integer part with thousands separators
-    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-    // Ensure at least two decimal places (add leading zeros if needed)
-    // if (decimalPart=="") {
-    //    decimalPart= decimalPart.padStart(2, "0")
-    // };
-    
-
-    // Combine formatted parts with comma and dollar sign
-    return `${integerPart}${decimalPart}`;
-}
-
-document.addEventListener("DOMContentLoaded", function () {
     const sizeButtons = document.querySelectorAll('.size-button');
     const addToCartButton = document.getElementById('add-to-cart');
     let selectedSize = null;
@@ -145,14 +105,47 @@ document.addEventListener("DOMContentLoaded", function () {
     // Manejar clic en el botón 'Añadir al carrito'
     addToCartButton.addEventListener('click', function () {
         if (selectedSize) {
-            console.log(`Agregando producto con tamaño ${selectedSize} al carrito`);
-            
-            // Aquí iría tu lógica para agregar el producto al carrito, por ejemplo, enviar una solicitud al servidor
-            // Simularemos una alerta por ahora
-            alert(`Producto con tamaño ${selectedSize} agregado al carrito`);
+            const productId = addToCartButton.getAttribute('data-product-id');
+
+            fetch('/Carrito/agregar/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken') // Agregar token CSRF para seguridad
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    talle: selectedSize
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`Producto con tamaño ${selectedSize} agregado al carrito`);
+                } else {
+                    alert(`Error al agregar el producto al carrito: ${data.error}`);
+                }
+            })
+            .catch(error => {
+                alert('Hubo un error al procesar la solicitud. Por favor, inténtalo nuevamente.');
+            });
         } else {
             alert('Por favor, selecciona un tamaño antes de agregar al carrito');
         }
     });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 });
-    

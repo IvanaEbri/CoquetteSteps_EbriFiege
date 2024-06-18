@@ -1,6 +1,7 @@
 from django.urls import path
-from . import views
+from .views import CarritoView, agregar_al_carrito
 
 urlpatterns = [
-    path('', views.Carrito_view.as_view(), name='carrito'),
+    path('', CarritoView.as_view(), name='carrito'),
+    path('agregar/', agregar_al_carrito, name='agregar_al_carrito'),
 ]

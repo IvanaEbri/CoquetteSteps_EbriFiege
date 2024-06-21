@@ -8,25 +8,30 @@
 <div class="cart">
     <div class="title-cart">
         <h1>Mi Carro</h1>
-        <p>🎀   🛒  🎀</p>
+        <p>🎀 🛒 🎀</p>
         <div class="total-cont">
             <h3>Total:</h3>
-            <h3>$ {{total_compra}}</h3>
+            <h3 id="total-compra">$ {{ total_compra }}</h3>
         </div>
     </div>
     <div class="detail-cart">
         <div class="cart-products">
             {% if cart %}
                 {% for product in cart %}
-                    {% include 'product_card.html' %}
+                    <div class="cart-item" id="cart-item-{{ product.id }}">
+                        {% include 'product_card.html' %}
+                        <button class="remove-from-cart" data-item-id="{{ product.id }}">
+                            <i class="fa fa-trash"></i> Borrar
+                        </button>
+                    </div>
+                    <br>
                 {% endfor %}
             {% else %}
                 <span>Aún no añadiste productos al carro</span>
             {% endif %}
         </div>
         <div class="cont-pagar">
-            <button class="pagar" type="submit" 
-            {% if cart %} disabled {% endif %}>
+            <button class="pagar" type="submit" {% if not cart %} disabled {% endif %}>
                 Confirmar compra
             </button>
         </div>
@@ -37,5 +42,7 @@
         </div>
     {% endfor %}
 </div>
+
+{% endblock %}
 
 {% endblock %}

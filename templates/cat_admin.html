@@ -1,0 +1,64 @@
+{% extends 'home_admin.html' %}
+
+{% block title %}Categorias - C🎀​S - ADMIN{% endblock %}
+
+{% block admin %}
+<div><h1>Categorias</h1></div>
+<div class="botones-categoria">
+    <button><a href="{% url 'crear_categoria' %}">Añadir Categoria</a></button>
+    <button><a href="{% url 'crear_tipo' %}">Añadir Tipo</a></button>
+</div>
+<div class="tablas-categoria">
+    <div class="tabla-cat">
+        <h2>Categoria</h2>
+        <table>
+            {% if category %}
+                <tr>
+                    <td>Nombre</td><td>Acciones</td>
+                </tr>
+                {% for cat in category %}
+                    <tr>
+                        <td>{{cat.categoria}}</td>
+                        <td>                           
+                            <a href="{% url 'editar_categoria' cat.pk %}">
+                                <i class="fa-solid fa-pen-to-square edit"></i>
+                            </a>
+                            <a href="{% url 'eliminar_categoria' cat.pk %}">
+                                <i class="fa-solid fa-trash delete"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td>No se registran categorias</td></tr>
+            {% endif %}
+        </table>
+    </div>
+    <div class="tabla-tipo">
+        <h2>Tipo</h2>
+        <table>
+            {% if type %}
+                <tr>
+                    <td>Nombre</td><td>Categoria</td><td>Acciones</td>
+                </tr>
+                {% for sub in type %}
+                    <tr>
+                        <td>{{sub.tipo}}</td>
+                        <td>{{sub.categoria_nom}}</td>
+                        <td>
+                        <a href="{% url 'editar_tipo' sub.pk %}">
+                            <i class="fa-solid fa-pen-to-square edit" ></i>
+                        </a>
+                        <a href="{% url 'eliminar_tipo' sub.pk %}">
+                            <i class="fa-solid fa-trash delete"></i>
+                        </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td>No se registran tipos</td></tr>
+            {% endif %}
+        </table>
+    </div>
+</div>
+{% endblock %}

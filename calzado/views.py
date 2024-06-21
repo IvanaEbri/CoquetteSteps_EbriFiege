@@ -1,14 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from categoria.models import Categoria
-from calzado.models import Calzado
-from django.shortcuts import redirect
-from django.urls import reverse
+from calzado.models import Calzado 
+from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView
 from usuario.models import Usuario
 import random
-from django.contrib.auth.models import AnonymousUser
 from django.views.decorators.http import require_POST
 import json
+from .forms import CalzadoForm, DeleteForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib import messages
 
 class Home (TemplateView):
     template_name = "home_content.html"
@@ -110,3 +111,65 @@ class Product(TemplateView):
                 messages.error(request, f"Hubo un error al añadir al carrito, favor intente nuevamente")
         else:
             return redirect("login")
+
+class ProductosView (TemplateView):
+    template_name = 'prod_admin.html'
+
+    def get_context_data (self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['shoes'] = Calzado.objects.filter(activo=True)
+        return context
+
+class CrearCalzadoView(CreateView):
+    model = Calzado
+    form_class = CalzadoForm
+    template_name = 'prod_ne_admin.html'
+    success_url = reverse_lazy('productos_admin') 
+
+    def form_valid(self, form):
+        # Procesar el formulario si es válido
+        user = form.save(commit=False)
+        # Podemos hacer algo
+        user.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        # Agregar mensajes de error a la lista de mensajes
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, f"{error}")
+        return super().form_invalid(form)
+
+class EditarCalzadoView(UpdateView):
+    model = Calzado
+    form_class = CalzadoForm
+    template_name = 'prod_ne_admin.html'
+    success_url = reverse_lazy('productos_admin')
+
+    def form_valid(self, form):
+        # Procesar el formulario si es válido
+        user = form.save(commit=False)
+        # Podemos hacer algo
+        user.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        # Agregar mensajes de error a la lista de mensajes
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.error(self.request, f"{error}")
+        return super().form_invalid(form)
+
+class EliminarCalzadoView(DeleteView):
+    model = Calzado
+    form_class = DeleteForm
+    template_name = 'prod_del_admin.html'
+    success_url = reverse_lazy('productos_admin')
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        success_url = self.get_success_url()
+        self.object.activo = False  # Cambiamos el atributo activo a False
+        self.object.save()
+        messages.success(request, 'El calzado se ha eliminado correctamente de forma lógica.')
+        return super().delete(request, *args, **kwargs)

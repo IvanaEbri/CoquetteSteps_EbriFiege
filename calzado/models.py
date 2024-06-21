@@ -1,4 +1,5 @@
 from django.db import models
+import os
 
 COLOR_CHOICE=[
         (1,"Blanco"),
@@ -58,11 +59,24 @@ class Calzado(models.Model):
     activo=models.BooleanField(null=False, default=True)
 
     def save(self, *args, **kwargs):
-        # Antes de guardar el código se convierte en el nombre del archivo si es nuevo
-        if not self.pk:  # Si es un nuevo registro
-            self.foto_prod.name = f'{self.codigo}.jpg'  # Asignar el nombre del archivo basado en el código
+        if not self.pk:  # Nuevo objeto
+            self.foto_prod.name = upload_to(self, self.foto_prod.name)
+        else:  # Actualización de un objeto existente
+            try:
+                calzado_antiguo = Calzado.objects.get(pk=self.pk)
+                if (calzado_antiguo.codigo != self.codigo or 
+                    calzado_antiguo.tipo_calzado.categoria_nom.categoria != self.tipo_calzado.categoria_nom.categoria):
+                    # Borrar la imagen antigua si existe
+                    if calzado_antiguo.foto_prod:
+                        calzado_antiguo.foto_prod.delete(save=False)
+            except Calzado.DoesNotExist:
+                pass  # Manejar el caso donde no se encuentra el objeto antiguo
         super().save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+        self.activo = False  # Marcamos el objeto como inactivo en lugar de borrarlo
+        self.save()
+        
     def get_color_display(self):
         return dict(COLOR_CHOICE).get(self.color, "Desconocido")
 

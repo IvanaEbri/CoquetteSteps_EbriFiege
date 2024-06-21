@@ -17,13 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from calzado.views import Home
+from usuario.views import HomeAdminView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('',home,name='home'),
-    path('Calzado/', include('calzado.urls')),
+    path('Home/admin/', HomeAdminView.as_view(), name='home_admin'),
+    path('Shoes/', include('calzado.urls')),
     path('User/', include('usuario.urls')),
-    path('Carrito/', include('carrito.urls')),
+    path('Cart/', include('carrito.urls')),
+    path('Category/', include('categoria.urls')),
     path('', Home.as_view(), name='home'), #AL FINAL
 ]
 

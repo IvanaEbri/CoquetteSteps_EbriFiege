@@ -12,9 +12,11 @@
 </head>
 <body>
     <header>
+       
         <div class="top-bar">
-            <p>15% OFF x Transferencia 🔥 | 6 cuotas sin interés | Envíos a todo el país.</p>
+            <p> {% block topbar %}15% OFF x Transferencia 🔥 | 6 cuotas sin interés | Envíos a todo el país. {% endblock %}</p>
         </div>
+       
         <div class="header-main">
             <div class="logo">
                 <h1><a href="{% url 'home' %}">COQUETTESTEPS 🎀​</a></h1>

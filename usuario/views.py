@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from categoria.models import Categoria
 from usuario.models import Usuario
+from django.views.generic import TemplateView
 
 
 from usuario.forms import RegistrationForm
@@ -94,5 +95,12 @@ class RegistrationView(CreateView):
         # Agregar mensajes de error a la lista de mensajes
         for field, errors in form.errors.items():
             for error in errors:
-                messages.error(self.request, f"{field}: {error}")
+                messages.error(self.request, f"{error}")
         return super().form_invalid(form)
+
+class HomeAdminView (TemplateView):
+    template_name = 'home_admin.html'
+
+    def get_context_data (self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

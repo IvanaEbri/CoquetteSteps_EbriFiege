@@ -1,16 +1,16 @@
 {% load static %}
 <article class="product" id="product">
-<div class="product-one">
+<div class="product-one carro-product">
     
     <img class="product-image" src="{% static 'calzado/' %}{{ product.calzado.tipo_calzado.categoria_nom }}/{{ product.calzado.tipo_calzado }}/{{ product.calzado.codigo }}/{{ product.calzado.codigo }}.jpg" alt="{{ product }}" >
     <div class="detail-cont">
-        <div class="detail">
-            <div class="product-title"><h4>{{product.calzado.nombre}}</h4></div>
+        <div class="detail column">
+            <div class="product-title" data-product="{{product.calzado.pk}}"><h4>{{product.calzado.nombre}}</h4></div>
             
             <div class="product-price">${{product.calzado.precio}}</div>
         </div>
-        <div>
-            <div class="product-size">Talle: {{product.talle}}</div>
+        <div class="column dos">
+            <div class="product-size" data-product="{{product.talle}}">Talle: {{product.talle}}</div>
             <div class="product-trash"><i class="fa-solid fa-trash"></i></div>
         </div>
     </div>

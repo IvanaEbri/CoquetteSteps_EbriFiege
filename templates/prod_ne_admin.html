@@ -1,0 +1,26 @@
+{% extends 'home_admin.html' %}
+
+{% block title %}
+    {% if form.instance.pk %}
+        Editar Calzado
+    {% else %}
+        Crear Calzado
+    {% endif %} - C🎀​S - ADMIN
+{% endblock %}
+
+{% block admin %}
+<h1>{% if form.instance.pk %}Editar Calzado{% else %}Crear Nuevo Calzado{% endif %}</h1>    
+    <form method="post">
+        {% csrf_token %}
+        <div class="login-form">
+            {{ form.as_p }}
+        </div>
+        <button type="submit">{% if form.instance.pk %}Actualizar{% else %}Crear{% endif %}</button>
+    </form>
+
+    {% for message in messages %}
+        <div class="error-cont">
+            <p class="error-message">{{ message }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

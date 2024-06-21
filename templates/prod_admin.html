@@ -1,0 +1,45 @@
+{% extends 'home_admin.html' %}
+
+{% block title %}Productos - C🎀​S - ADMIN{% endblock %}
+
+{% block admin %}
+{% load static %}
+<div><h1>Productos</h1></div>
+<div class="botones-categoria">
+    <button><a href="{% url 'crear_producto' %}">Añadir Calzado</a></button>
+</div>
+<div class="tablas-categoria">
+        <h2>Tipo</h2>
+        <table>
+            {% if shoes %}
+                <tr>
+                    <td>Foto</td>
+                    <td>Codigo</td>
+                    <td>Nombre</td>
+                    <td>Precio</td>
+                    <td>Acciones</td>
+                </tr>
+                {% for shoe in shoes %}
+                    <tr>
+                        <td>    
+                            <img class="table-img" src="{% static 'calzado/' %}{{ shoe.tipo_calzado.categoria_nom }}/{{ shoe.tipo_calzado }}/{{ shoe.codigo }}/{{ shoe.codigo }}.jpg" alt="{{ shoe }}" >
+                        </td>
+                        <td>{{ shoe.codigo }}</td>
+                        <td>{{ shoe.nombre }}</td>
+                        <td>{{ shoe.precio }}</td>
+                        <td>
+                            <a href="{% url 'editar_producto' shoe.pk %}">
+                                <i class="fa-solid fa-pen-to-square edit" ></i>
+                            </a>
+                            <a href="{% url 'eliminar_producto' shoe.pk %}">
+                                <i class="fa-solid fa-trash delete"></i>
+                            </a>
+                        </td> 
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td>No se registran productos</td></tr>
+            {% endif %}
+        </table>
+</div>
+{% endblock %}

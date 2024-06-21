@@ -5,22 +5,36 @@ Eliminar Calzado - C🎀​S - ADMIN
 {% endblock %}   
 
 {% block admin %}
+<div class="admin-form">
     <h1>Confirmar Eliminación</h1>
     <p>¿Estás seguro de que deseas eliminar el Calzado?</p>
-    <p><b>Código: {{ object.codigo }}</b></p>
-    <p><b>Nombre: {{ object.nombre }}</b></p>
-    <form method="post">
+    <p class="calzado-del"><b>Código: {{ object.codigo }}</b></p>
+    <p class="calzado-del"><b>Nombre: {{ object.nombre }}</b></p>
+    <form method="post" class="admin-delete">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Eliminar</button>
-        <button>
-            <a href="{% url 'productos_admin' %}">Cancelar</a>
-        </button>
+        <!-- {{ form.as_p }} -->
+        <div class="login-form">
+            <label for="id_confirm_delete"><strong>Confirme la eliminación</strong></label>
+            <input
+                type="checkbox"
+                class="form-control"
+                id="id_confirm_delete"
+                name="confirm_delete"
+                required
+            />
+        </div>
+        <div class="cont-btn-admin">
+            <button type="submit" class="btn login-button">Eliminar</button>
+        </div>  
     </form>
-
+        <div class="logout-cancel">
+        <a href="{% url 'productos_admin' %}">
+            <button class="btn login-button">Cancelar</button></a>
+        </div>
     {% for message in messages %}
         <div class="error-cont">
             <p class="error-message">{{ message }}</p>
         </div>
     {% endfor %}
+</div>
 {% endblock %}

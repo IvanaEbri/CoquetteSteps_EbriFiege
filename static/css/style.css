@@ -730,3 +730,21 @@ i.edit, i.delete{
     table.table-admin.tab-productos thead th {
         font-size: 18px;
     }
+
+
+/* formularios administrador */
+.admin-form{
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin: 15px auto 0; /* Centrar el formulario horizontalmente */
+    text-align: center;
+}
+
+input[type='checkbox'].form-control{
+    flex-grow: 0;
+    background-color: var(--light-pink-color);
+    accent-color: var(--light-pink-color);
+}
+
+.calzado-del { 
+    color: var(--dark-coral);
+}

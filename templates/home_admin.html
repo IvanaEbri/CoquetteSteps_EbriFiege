@@ -17,9 +17,11 @@
 <div class="home-cont">
 
     {% block admin %}
-    <button><a href="{% url 'categorias_admin' %}">Categorias</a></button>
-    <button><a href="{% url 'productos_admin' %}">Productos</a></button>
-    <button><a href="#">Ventas</a></button>
+    <div class="cont-btn-admin">
+        <button class="btn login-button btn-admin"><a href="{% url 'categorias_admin' %}">Categorias</a></button>
+        <button class="btn login-button btn-admin"><a href="{% url 'productos_admin' %}">Productos</a></button>
+        <button class="btn login-button btn-admin"><a href="#">Ventas</a></button>
+    </div>
     {% endblock %}
 </div>
 {% endblock %}

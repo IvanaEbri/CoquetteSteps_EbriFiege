@@ -6,19 +6,23 @@
 {% load static %}
 <div><h1>Productos</h1></div>
 <div class="botones-categoria">
-    <button><a href="{% url 'crear_producto' %}">Añadir Calzado</a></button>
+    <button class="btn login-button btn-calzado"><a href="{% url 'crear_producto' %}">Añadir Calzado</a></button>
 </div>
 <div class="tablas-categoria">
-        <h2>Tipo</h2>
-        <table>
+    <div class="tabla-productos">
+        <h2  class="table-title">Calzados</h2>
+        <table class="table-admin tab-productos">
             {% if shoes %}
+            <thead>
                 <tr>
-                    <td>Foto</td>
-                    <td>Codigo</td>
-                    <td>Nombre</td>
-                    <td>Precio</td>
-                    <td>Acciones</td>
+                    <th>Foto</th>
+                    <th>Codigo</th>
+                    <th>Nombre</td>
+                    <th>Precio</th>
+                    <th>Acciones</th>
                 </tr>
+            </thead>
+            <tbody>
                 {% for shoe in shoes %}
                     <tr>
                         <td>    
@@ -26,7 +30,7 @@
                         </td>
                         <td>{{ shoe.codigo }}</td>
                         <td>{{ shoe.nombre }}</td>
-                        <td>{{ shoe.precio }}</td>
+                        <td>${{ shoe.precio }}</td>
                         <td>
                             <a href="{% url 'editar_producto' shoe.pk %}">
                                 <i class="fa-solid fa-pen-to-square edit" ></i>
@@ -37,9 +41,11 @@
                         </td> 
                     </tr>
                 {% endfor %}
+            </tbody>
             {% else %}
                 <tr><td>No se registran productos</td></tr>
             {% endif %}
         </table>
+    </div> 
 </div>
 {% endblock %}

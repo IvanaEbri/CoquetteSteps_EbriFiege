@@ -5,9 +5,26 @@
     --dark-coral: #ce5e7e ;
     --black-color : #000;
     --error-red-color : #d63f3f;
+    --light-pinky : #FFDAE3;
 }
 
+/* ajustes para que no modifque el navegador color y decoriacion */
+:-webkit-any-link {
+    color: inherit;
+    text-decoration: none;
+}
 
+:-moz-any-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+:any-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ajustes proyecto */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -17,10 +34,8 @@ header {
     width: 100%;
 }
 
-
-a, a :hover {
-    text-decoration: none;
-    color: var(--black-color);
+a,a :hover {
+    text-decoration: none !important;
 }
 
 .top-bar {
@@ -43,6 +58,8 @@ a, a :hover {
     margin: 0;
     font-size: 24px;
     font-weight: bold;
+    text-decoration: none;
+    color: var(--black-color) !important;
 }
 
 .navigation ul {
@@ -613,3 +630,103 @@ p.title-cart.cart{
     outline: none;
     color: var(--white-color);
 }
+
+/* configuracion vistas admin */
+.home-cont {
+    max-width: 80%; 
+    margin: 15px auto 0; /* Centrar el formulario horizontalmente */
+    text-align: center;
+}
+
+.cont-btn-admin{
+    max-width: 600px;
+    margin: auto;
+}
+
+button.btn.login-button.btn-admin {
+    margin: 5px 0;
+}
+
+/* vista admin categorias */
+div.botones-categoria {
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+button.btn.login-button.btn-cat, button.btn.login-button.btn-tipo, button.btn.login-button.btn-calzado{
+    max-width: 300px;
+    margin: 0 5px;
+}
+
+div.tablas-categoria {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 15px auto 20px;
+}
+
+div.tabla-productos {
+    width: 100%;
+    margin: auto;
+    display: inline;
+}
+
+h2.table-title {
+    color: var(--dark-coral);
+    text-transform: uppercase;
+}
+
+img.table-img{
+    max-width: 200px;
+}
+
+i.edit, i.delete{
+    color: var(--dark-coral);
+}
+    /* tablas admin */
+
+    table.table-admin {
+        width: 40%;
+        min-width: 300px;
+        text-align: center;
+        border-collapse: collapse;
+    }
+    table.table-admin td, table.table-admin th {
+        padding: 4px 1px;
+    }
+    table.table-admin tbody td {
+        font-size: 13px;
+    }
+    table.table-admin td:nth-child(even) {
+        background: var(--light-pinky);
+    }
+    table.table-admin thead {
+        border-bottom: 4px solid var(--light-pink-color);
+    }
+    table.table-admin thead th {
+        font-size: 15px;
+        font-weight: bold;
+        color: var(--black-color);
+        text-align: center;
+    }
+    table.table-admin.tabla-tipo {
+        width: 40%;
+        min-width: 500px;
+        text-align: center;
+        border-collapse: collapse;
+    }
+    table.table-admin.tab-productos {
+        width: 100%;
+        min-width: 500px;
+        text-align: center;
+        border-collapse: collapse;
+    }
+    table.table-admin.tab-productos tbody td {
+        font-size: 16px;
+    }
+    table.table-admin.tab-productos thead th {
+        font-size: 18px;
+    }

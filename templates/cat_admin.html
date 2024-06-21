@@ -5,17 +5,20 @@
 {% block admin %}
 <div><h1>Categorias</h1></div>
 <div class="botones-categoria">
-    <button><a href="{% url 'crear_categoria' %}">Añadir Categoria</a></button>
-    <button><a href="{% url 'crear_tipo' %}">Añadir Tipo</a></button>
+    <button class="btn login-button btn-cat"><a href="{% url 'crear_categoria' %}">Añadir Categoria</a></button>
+    <button class="btn login-button btn-tipo"><a href="{% url 'crear_tipo' %}">Añadir Tipo</a></button>
 </div>
 <div class="tablas-categoria">
     <div class="tabla-cat">
-        <h2>Categoria</h2>
-        <table>
+        <h2 class="table-title">Categoria</h2>
+        <table class="table-admin">
             {% if category %}
+            <thead>
                 <tr>
-                    <td>Nombre</td><td>Acciones</td>
+                    <th>Nombre</th><th>Acciones</th>
                 </tr>
+            </thead>
+            <tbody>
                 {% for cat in category %}
                     <tr>
                         <td>{{cat.categoria}}</td>
@@ -29,18 +32,21 @@
                         </td>
                     </tr>
                 {% endfor %}
+            </tbody>
             {% else %}
                 <tr><td>No se registran categorias</td></tr>
             {% endif %}
         </table>
     </div>
     <div class="tabla-tipo">
-        <h2>Tipo</h2>
-        <table>
+        <h2 class="table-title">Tipo</h2>
+        <table class="table-admin tabla-tipo">
             {% if type %}
+            <thead>
                 <tr>
-                    <td>Nombre</td><td>Categoria</td><td>Acciones</td>
+                    <th>Nombre</th><th>Categoria</th><th>Acciones</th>
                 </tr>
+            </thead>
                 {% for sub in type %}
                     <tr>
                         <td>{{sub.tipo}}</td>

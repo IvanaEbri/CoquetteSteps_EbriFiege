@@ -1,0 +1,26 @@
+{% extends 'home.html' %}
+
+{% block title %}🛒 Compra Exitosa 🛒 - Coquette🎀​Steps{% endblock %}
+
+{% block product %}
+
+{% load static %}
+<div class="cart">
+    <div class="title-cart">
+        <h1 class="title-cart">Checkout</h1>
+        <p class="title-cart">🎀 🛒 🎀</p>
+        <div class="total-cont">
+            <h3>Gracias por tu compra.</h3>
+        </div>
+        <p class="title-cart">🎀 🛒 🎀</p>
+
+        <div class="cont-pagar">
+            <a href="{% url 'home' %}">
+                <button >
+                    Regresar
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

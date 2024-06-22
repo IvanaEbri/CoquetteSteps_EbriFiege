@@ -27,14 +27,19 @@
                     <!-- <br> -->
                 {% endfor %}
             {% else %}
-                <span>Aún no añadiste productos al carro</span>
+            <div class="cart-item">
+                <span class="cart-products">Aún no añadiste productos al carro</span>
+            </div>
             {% endif %}
         </div>
+    <form method="post" action="{% url 'carrito' %}">
+        {% csrf_token %}
         <div class="cont-pagar">
             <button class="pagar" type="submit" {% if not cart %} disabled {% endif %}>
                 Confirmar compra
             </button>
         </div>
+    </form>
     </div>
     {% for message in messages %}
         <div class="error-cont">

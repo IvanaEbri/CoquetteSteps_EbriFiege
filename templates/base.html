@@ -35,20 +35,22 @@
 
             <div class="user-actions">
                 {% if user.is_authenticated %}
+                    {% if user.cliente %}
+                    <a id="wish-list" href="#">Lista de Deseos</a>
+                    <a href="{% url 'carrito' %}"><span class="cart">🛒 
+                        {% block carro %} 
+                            {% if cant_prduct %}
+                                {{ cant_prduct }}
+                            {% else %}
+                                0
+                            {% endif %}
+                        {% endblock %}</span></a>
+                    {% endif %}
                     <a href="{% url 'confirm_logout' %}">Cerrar Sesion</a>
                 {% else %}
                     <a href="{% url 'register' %}">Crear Cuenta</a>
                     <a href="{% url 'login' %}">Iniciar Sesión</a>
                 {% endif %}
-                <a href="{% url 'carrito' %}"><span class="cart">🛒 
-                    {% block carro %} 
-                        {% if cant_prduct %}
-                            {{ cant_prduct }}
-                        {% else %}
-                            0
-                        {% endif %}
-                    {% endblock %}
-                </span></a>
             </div>
         </div>
     </header>

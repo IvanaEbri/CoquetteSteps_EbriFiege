@@ -9,56 +9,67 @@
 {% endblock %}
 
 {% block admin %}
-<div class="product-form">
-    <h1>{% if form.instance.pk %}Editar Calzado{% else %}Crear Nuevo Calzado{% endif %}</h1>    
-    <form method="post" class="admin-delete">
+    <h1>{% if form.instance.pk %}Editar Calzado{% else %}Crear Nuevo Calzado{% endif %}</h1>
+    
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <!-- <div class="login-form">
-            {{ form.as_p }}
-        </div> -->
-        <div class="login-form">
-        <label for="id_codigo"><strong>Codigo</strong></label>
-            {{form.codigo}}
+        
+        <div class="form-group">
+            {{ form.codigo.errors }}
+            <label for="{{ form.codigo.id_for_label }}">Código:</label>
+            {{ form.codigo }}
         </div>
-        <div class="login-form">
-            <label for="id_nombre"><strong>Nombre</strong></label>
-            {{form.nombre}}
+        
+        <div class="form-group">
+            {{ form.nombre.errors }}
+            <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+            {{ form.nombre }}
         </div>
-        <div class="login-form">
-            <label for="id_tipo_calzado"><strong>Tipo de calzado</strong></label>
-            {{form.tipo_calzado}}
+        
+        <div class="form-group">
+            {{ form.tipo_calzado.errors }}
+            <label for="{{ form.tipo_calzado.id_for_label }}">Tipo de Calzado:</label>
+            {{ form.tipo_calzado }}
         </div>
-        <div class="login-form">
-            <label for="id_foto_prod"><strong>Foto del calzado</strong></label>
-            <div id="foto_prod">
-            {{form.foto_prod}}
-            </div>
+        
+        <div class="form-group">
+            {{ form.foto_prod.errors }}
+            <label for="{{ form.foto_prod.id_for_label }}">Imagen del Producto:</label>
+            {{ form.foto_prod }}
         </div>
-        <div class="login-form">
-            <label for="id_descripcion"><strong>Descripcion</strong></label>
-            {{form.descripcion}}
+        <br>
+        <div class="form-group">
+            {{ form.descripcion.errors }}
+            <label for="{{ form.descripcion.id_for_label }}">Descripción:</label>
+            {{ form.descripcion }}
         </div>
-        <div class="login-form">
-            <label for="id_color"><strong>Color</strong></label>
-            {{form.color}}
+        
+        <div class="form-group">
+            {{ form.color.errors }}
+            <label for="{{ form.color.id_for_label }}">Color:</label>
+            {{ form.color }}
         </div>
-        <div class="login-form">
-            <label for="id_material"><strong>Material</strong></label>
-            {{form.material}}
+        
+        <div class="form-group">
+            {{ form.material.errors }}
+            <label for="{{ form.material.id_for_label }}">Material:</label>
+            {{ form.material }}
         </div>
-        <div class="login-form">
-            <label for="id_precio"><strong>Precio</strong></label>
-            {{form.precio}}
+        
+        <div class="form-group">
+            {{ form.precio.errors }}
+            <label for="{{ form.precio.id_for_label }}">Precio:</label>
+            {{ form.precio }}
         </div>
-        <div class="cont-btn-admin">
-            <button type="submit" class="btn login-button">{% if form.instance.pk %}Actualizar{% else %}Crear{% endif %}</button>
-        </div>
+        
+        <button type="submit" class="btn btn-primary">
+            {% if form.instance.pk %}Actualizar{% else %}Crear{% endif %}
+        </button>
     </form>
 
     {% for message in messages %}
-        <div class="error-cont">
-            <p class="error-message">{{ message }}</p>
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
         </div>
     {% endfor %}
-</div>
 {% endblock %}

@@ -27,7 +27,9 @@ class Carrito(models.Model):
                         motivo = 1,
                         activo = True
                     )
+                    nuevo_registro.save()
                     self.comprado=True
+                    self.save()
                 return True    
                 #messages.success(request,f"Su compra del {self.calzado.nombre} en talle {self.talle} ha sido exitosa")
             except Exception as e:

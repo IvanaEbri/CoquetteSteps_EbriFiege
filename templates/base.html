@@ -12,11 +12,9 @@
 </head>
 <body>
     <header>
-       
         <div class="top-bar">
-            <p> {% block topbar %}15% OFF x Transferencia 🔥 | 6 cuotas sin interés | Envíos a todo el país. {% endblock %}</p>
+            <p>15% OFF x Transferencia 🔥 | 6 cuotas sin interés | Envíos a todo el país.</p>
         </div>
-       
         <div class="header-main">
             <div class="logo">
                 <h1><a href="{% url 'home' %}">COQUETTESTEPS 🎀​</a></h1>
@@ -42,13 +40,15 @@
                     <a href="{% url 'register' %}">Crear Cuenta</a>
                     <a href="{% url 'login' %}">Iniciar Sesión</a>
                 {% endif %}
-                <a href="{% url 'carrito' %}"><span class="cart">🛒 {% block carro %} 
-                    {% if cant_prduct %}
-                        {{cant_prduct}}
-                    {% else %}
-                        0
-                    {% endif %}
-                {% endblock %}</span></a>
+                <a href="{% url 'carrito' %}"><span class="cart">🛒 
+                    {% block carro %} 
+                        {% if cant_prduct %}
+                            {{ cant_prduct }}
+                        {% else %}
+                            0
+                        {% endif %}
+                    {% endblock %}
+                </span></a>
             </div>
         </div>
     </header>
@@ -84,5 +84,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    
+    

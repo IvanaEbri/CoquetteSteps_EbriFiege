@@ -9,7 +9,7 @@
     <li><a href="{% url 'home_admin' %}">Inicio</a></li>
     <li><a href="{% url 'categorias_admin' %}">Categorias</a></li>
     <li><a href="{% url 'productos_admin' %}">Productos</a></li>
-    <li><a href="#">Ventas</a></li>
+    <li><a href="{% url 'ventas' %}">Ventas</a></li>
 </ul>
 {% endblock %}
 
@@ -20,7 +20,7 @@
     <div class="cont-btn-admin">
         <button class="btn login-button btn-admin"><a href="{% url 'categorias_admin' %}">Categorias</a></button>
         <button class="btn login-button btn-admin"><a href="{% url 'productos_admin' %}">Productos</a></button>
-        <button class="btn login-button btn-admin"><a href="#">Ventas</a></button>
+        <button class="btn login-button btn-admin"><a href="{% url 'ventas' %}">Ventas</a></button>
     </div>
     {% endblock %}
 </div>

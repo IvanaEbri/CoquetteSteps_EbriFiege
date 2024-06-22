@@ -29,6 +29,7 @@ urlpatterns = [
     path('User/', include('usuario.urls')),
     path('Cart/', include('carrito.urls')),
     path('Category/', include('categoria.urls')),
+    path('Sells/', include('movimiento.urls')),
     path('', Home.as_view(), name='home'), #AL FINAL
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,0 +1,48 @@
+{% extends 'home_admin.html' %}
+
+{% block title %}Ventas - C🎀​S - ADMIN{% endblock %}
+
+{% block admin %}
+
+<div class="cart">
+    <div class="title-cart">
+        <h1 class="title-cart">Ventas</h1>
+        <p class="title-cart">🎀 🛒 🎀</p>
+        <div class="total-cont">
+            <h3 class="total">Total:</h3>
+            <h3 id="total-compra">$ {{ total_ventas }}</h3>
+        </div>
+        <p class="title-cart">🎀 🛒 🎀</p>
+
+        <div class="tabla-productos">
+            <table class="table-admin tab-productos">
+                {% if ventas %}
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                        <th>Calzado</td>
+                        <th>Precio</th>
+                        <th>Talle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for venta in ventas %}
+                        <tr>
+                            <td>{{ venta.usuario }}</td>
+                            <td>{{ venta.fecha }}</td>
+                            <td>{{ venta.calzado }}</td>
+                            <td>${{ venta.precio }}</td>
+                            <td>{{ venta.talle }}</td> 
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                {% else %}
+                    <tr><td>No se registran ventas</td></tr>
+                {% endif %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -19,6 +19,7 @@ class Movimiento(models.Model):
     usuario = models.ForeignKey('usuario.Usuario',models.CASCADE, null=False, blank=False)
     fecha = models.DateTimeField(auto_now_add=True)
     calzado = models.ForeignKey('calzado.Calzado', models.CASCADE, null=False, blank=False)
+    precio = models.DecimalField(null=False, decimal_places=2, max_digits=10, default= 0.00)
     talle = models.IntegerField(null=False,choices=TALLE_CHOICE, default=TALLE_CHOICE[0][0])
     cantidad = models.IntegerField(null=False,blank=False, default=0)
     motivo = models.IntegerField(null=False,choices=MOTIVO_CHOICE,default=MOTIVO_CHOICE[0][0])
@@ -26,6 +27,7 @@ class Movimiento(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:  # Si es un nuevo registro
+            self.precio= self.calzado.precio
             # Establecer la fecha de creación solo si es una nueva instancia
             self.fecha_creacion = timezone.now()
         super().save(*args, **kwargs)

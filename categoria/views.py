@@ -91,7 +91,7 @@ class EliminarCategoriaView(DeleteView):
 class CrearTipoView(CreateView):
     model = Tipo
     form_class = TipoForm
-    template_name = 'cat_ne_admin.html'
+    template_name = 'type_ne_admin.html'
     success_url = reverse_lazy('categorias_admin') 
 
     def form_valid(self, form):
@@ -111,7 +111,7 @@ class CrearTipoView(CreateView):
 class EditarTipoView(UpdateView):
     model = Tipo
     form_class = TipoForm
-    template_name = 'cat_ne_admin.html'
+    template_name = 'type_ne_admin.html'
     success_url = reverse_lazy('categorias_admin')
 
     def form_valid(self, form):

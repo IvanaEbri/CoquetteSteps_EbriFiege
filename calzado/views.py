@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from categoria.models import Categoria
-from calzado.models import Calzado 
+from categoria.models import Categoria, Tipo
+from calzado.models import Calzado, COLOR_CHOICE, MATERIAL_CHOICE
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView
 from usuario.models import Usuario

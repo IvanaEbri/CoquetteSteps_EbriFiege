@@ -9,13 +9,50 @@
 {% endblock %}
 
 {% block admin %}
-<h1>{% if form.instance.pk %}Editar Calzado{% else %}Crear Nuevo Calzado{% endif %}</h1>    
-    <form method="post">
+<div class="product-form">
+    <h1>{% if form.instance.pk %}Editar Calzado{% else %}Crear Nuevo Calzado{% endif %}</h1>    
+    <form method="post" class="admin-delete">
         {% csrf_token %}
-        <div class="login-form">
+        <!-- <div class="login-form">
             {{ form.as_p }}
+        </div> -->
+        <div class="login-form">
+        <label for="id_codigo"><strong>Codigo</strong></label>
+            {{form.codigo}}
         </div>
-        <button type="submit">{% if form.instance.pk %}Actualizar{% else %}Crear{% endif %}</button>
+        <div class="login-form">
+            <label for="id_nombre"><strong>Nombre</strong></label>
+            {{form.nombre}}
+        </div>
+        <div class="login-form">
+            <label for="id_tipo_calzado"><strong>Tipo de calzado</strong></label>
+            {{form.tipo_calzado}}
+        </div>
+        <div class="login-form">
+            <label for="id_foto_prod"><strong>Foto del calzado</strong></label>
+            <div id="foto_prod">
+            {{form.foto_prod}}
+            </div>
+        </div>
+        <div class="login-form">
+            <label for="id_descripcion"><strong>Descripcion</strong></label>
+            {{form.descripcion}}
+        </div>
+        <div class="login-form">
+            <label for="id_color"><strong>Color</strong></label>
+            {{form.color}}
+        </div>
+        <div class="login-form">
+            <label for="id_material"><strong>Material</strong></label>
+            {{form.material}}
+        </div>
+        <div class="login-form">
+            <label for="id_precio"><strong>Precio</strong></label>
+            {{form.precio}}
+        </div>
+        <div class="cont-btn-admin">
+            <button type="submit" class="btn login-button">{% if form.instance.pk %}Actualizar{% else %}Crear{% endif %}</button>
+        </div>
     </form>
 
     {% for message in messages %}
@@ -23,4 +60,5 @@
             <p class="error-message">{{ message }}</p>
         </div>
     {% endfor %}
+</div>
 {% endblock %}

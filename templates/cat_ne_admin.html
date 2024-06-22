@@ -9,13 +9,20 @@
 {% endblock %}
 
 {% block admin %}
-<h1>{% if form.instance.pk %}Editar Categoría{% else %}Crear Nueva Categoría{% endif %}</h1>    
-    <form method="post">
+<div class="product-form">
+    <h1>{% if form.instance.pk %}Editar Categoría{% else %}Crear Nueva Categoría{% endif %}</h1>    
+    <form method="post" class="admin-delete">
         {% csrf_token %}
-        <div class="login-form">
+        <!-- <div class="login-form">
             {{ form.as_p }}
+        </div> -->
+        <div class="login-form">
+            <label for="id_categoria"><strong>Categoria</strong></label>
+                {{form.categoria}}
         </div>
-        <button type="submit">{% if form.instance.pk %}Actualizar{% else %}Crear{% endif %}</button>
+        <div class="cont-btn-admin">
+            <button type="submit" class="btn login-button">{% if form.instance.pk %}Actualizar{% else %}Crear{% endif %}</button>
+        </div>
     </form>
 
     {% for message in messages %}
@@ -23,4 +30,5 @@
             <p class="error-message">{{ message }}</p>
         </div>
     {% endfor %}
+</div>
 {% endblock %}

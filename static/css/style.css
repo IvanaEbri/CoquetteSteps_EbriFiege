@@ -748,3 +748,23 @@ input[type='checkbox'].form-control{
 .calzado-del { 
     color: var(--dark-coral);
 }
+
+#id_foto_prod {
+    width: min-content;
+}
+
+.product-form{
+    max-width: 800px; /* Ancho máximo del formulario */
+    margin: 15px auto 0; /* Centrar el formulario horizontalmente */
+    text-align: center;
+    width: 90%;
+}
+
+#foto_prod {
+    flex-direction: column;
+    width: 80%;
+}
+
+select, textarea {
+    flex-grow: 1;
+}

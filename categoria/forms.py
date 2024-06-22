@@ -8,6 +8,9 @@ class CategoriaForm(forms.ModelForm):
     class Meta:
         model = Categoria
         fields = ['categoria']
+        widgets = {
+            'categoria': forms.TextInput(attrs={'class': 'form-control'})
+        }
 
     error_messages = {
         'category_exists': _("Esta categoria ya existe."),
@@ -24,6 +27,10 @@ class TipoForm(forms.ModelForm):
     class Meta:
         model = Tipo
         fields = ['tipo','categoria_nom']
+        widgets = {
+            'tipo': forms.TextInput(attrs={'class': 'form-control'}),
+            'categoria_nom': forms.Select(attrs={'class': 'form-control'})
+        }
 
     error_messages = {
         'type_exists': _("Este tipo ya existe."),

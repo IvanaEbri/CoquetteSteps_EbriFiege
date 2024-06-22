@@ -15,7 +15,7 @@ class Carrito(models.Model):
     def compra_calzado (self):
         from movimiento.models import Movimiento
 
-        if activo==True and comprado==False:
+        if self.activo==True and self.comprado==False:
             try:
                 with transaction.atomic():
                     #creo un registro en movimiento con los datos del producto en el carro
@@ -27,7 +27,10 @@ class Carrito(models.Model):
                         motivo = 1,
                         activo = True
                     )
+                    nuevo_registro.save()
                     self.comprado=True
+                    self.activo=False
+                    self.save()
                 return True    
                 #messages.success(request,f"Su compra del {self.calzado.nombre} en talle {self.talle} ha sido exitosa")
             except Exception as e:

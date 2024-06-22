@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 import json
+from django.contrib import messages
 
 class CarritoView(TemplateView):
     template_name = "cart.html"
@@ -27,6 +28,21 @@ class CarritoView(TemplateView):
         context["cant_prduct"] = carro.count()  # Cantidad de productos en el carrito
         context["cart"] = carro
         return context
+
+    def post(self, request, *args, **kwargs):
+        usuario_act = self.request.user
+        carro = usuario_act.productos_carro()
+        if carro.count()>0:
+            try:
+                for producto in carro:
+                    producto.compra_calzado()
+                messages.success(self.request, "Compra exitosa")
+                return redirect('checkout_view')
+            except Exception as e:
+                messages.error(self.request, f"Error al procesar la compra: {str(e)}")
+                return redirect('carrito')
+        else:
+            messages.error(self.request, "El carrito se encuentra vacio")
 
 @csrf_exempt
 def agregar_al_carrito(request):
@@ -88,3 +104,6 @@ def eliminar_del_carrito(request):
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)})
     return JsonResponse({'success': False, 'error': 'Método no permitido'})
+
+class CheckoutView(TemplateView):
+    template_name = "checkout.html"

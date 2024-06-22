@@ -26,8 +26,13 @@
                 {% for shoe in shoes %}
                     <tr>
                         <td>    
-                            <img class="table-img" src="{% static 'calzado/' %}{{ shoe.tipo_calzado.categoria_nom }}/{{ shoe.tipo_calzado }}/{{ shoe.codigo }}/{{ shoe.codigo }}.jpg" alt="{{ shoe }}" >
+                            {% if shoe.foto_prod %}
+                                <img class="table-img" src="{{ shoe.foto_prod.url }}" alt="{{ shoe.nombre }}">
+                            {% else %}
+                                <p>Sin imagen disponible</p>
+                            {% endif %}
                         </td>
+                        
                         <td>{{ shoe.codigo }}</td>
                         <td>{{ shoe.nombre }}</td>
                         <td>${{ shoe.precio }}</td>
@@ -48,4 +53,4 @@
         </table>
     </div> 
 </div>
-{% endblock %}
+{% endblock %} 

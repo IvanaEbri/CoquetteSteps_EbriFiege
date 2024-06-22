@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from calzado.views import Home
 from usuario.views import HomeAdminView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +30,7 @@ urlpatterns = [
     path('Cart/', include('carrito.urls')),
     path('Category/', include('categoria.urls')),
     path('', Home.as_view(), name='home'), #AL FINAL
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 

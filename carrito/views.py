@@ -71,7 +71,7 @@ def eliminar_del_carrito(request):
             item_id = data['item_id']
             usuario = request.user
             carrito_item = Carrito.objects.get(id=item_id, usuario=usuario, activo=True)
-            carrito_item.delete()
+            carrito_item.eliminacion_carro()
 
             # Calcular el total y la cantidad de productos en el carrito
             carro = usuario.productos_carro()

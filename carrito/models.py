@@ -40,3 +40,4 @@ class Carrito(models.Model):
 
     def eliminacion_carro (self):
         self.activo= False
+        self.save()

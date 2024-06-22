@@ -22,7 +22,7 @@ class Home (TemplateView):
         context["star_product"]= random.sample(shoes, min(len(shoes), 5))
         usuario_act = self.request.user
         if usuario_act.is_authenticated:
-            context ["cant_prduct"] = usuario_act.carrito
+            context ["cant_prduct"] = usuario_act.carrito_count()
         return context
 
 # def home(request):
@@ -40,7 +40,7 @@ class Home_filter (TemplateView):
         cat = kwargs.get('category_filter')
         usuario_act = self.request.user
         if usuario_act.is_authenticated:
-            context ["cant_prduct"] = usuario_act.carrito
+            context ["cant_prduct"] = usuario_act.carrito_count()
         context['category'] = Categoria.objects.all()
 
         if cat!='all':
@@ -88,7 +88,7 @@ class Product(TemplateView):
         context['size']= [35,36,37,38,39,40]
         usuario_act = self.request.user
         if usuario_act.is_authenticated:
-            context ["cant_prduct"] = usuario_act.carrito
+            context ["cant_prduct"] = usuario_act.carrito_count()
 
         return context
 

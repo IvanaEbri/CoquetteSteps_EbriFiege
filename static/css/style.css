@@ -540,15 +540,19 @@ div.cart {
     padding: 0 20px 10px;
 }
 .title-cart {
+    display: flex;
     width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    flex-direction: column;
 }
-h1.title-cart.cart{
+h1.title-cart{
     margin: 15px 0 0;
     text-transform: uppercase;
     color: var(--dark-coral);
     align-self: center;
 }
-p.title-cart.cart{
+p.title-cart{
     margin: 0;
     font-size: 20px;
 }
@@ -558,53 +562,108 @@ p.title-cart.cart{
     justify-content: space-evenly;
     width: 60%;
 }
+h3.total{
+    text-transform: uppercase;
+}
+.cart-item, .detail-cart-cont {
+    width: 100%;
+}
+
+#product-cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
 
 .product-one.carro-product{
     max-height: 200px;
     min-height: 50px;
+    margin: 5px 0;
     padding: 5px;
     height: min-content;
+    display: flex;
 }
 
-.product-one.carro-product.product-image{
-    flex: 1;
-    min-width: 50px; /* Ajustar según sea necesario */
-    width: 20%;
+img.cart-image{
+    object-fit: cover;
+    width: 100%;
+    max-width: 200px;
+    height: auto; /* Mantener la proporción de la imagen */
 }
-.detail-cont {
+
+.img-cart-cont{
+    flex: 1;
+    min-width: 50px;
+    width: 20%;
+    max-height: 190px;
+    min-height: 50px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.detail-cont-cart {
     display: flex;
     flex: 2;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     
 }
 
-.column.detail-cont {
+.row {
+    width: 100%;
+}
+
+.detail-cart {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 5px;
 }
 
-.detail.column {
-    padding: 0;
-    margin: 0;
-}
-
-.column.product-title{
+.detail-cart.product-title{
     text-align: start;
     margin: 0;
 }
 
-.column.product-price {
+.detail-cart.product-price {
     text-align: start;
     margin-top: 5px;
 }
 
-.product-size, .product-trash {
+.product-size {
     text-align: end;
-    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.trash-cont {
+    width: 100%;
+    justify-content: end;
+    display: flex;
+}
+
+.remove-from-cart {
+    display: flex;
+    align-items: center;
+    text-align: end;
+    cursor: pointer;
+    color: var(--white-color);
+    border: none;
+    border-radius: 4px;
+    height: 25px;
+    padding: 5px;
+    background: var(--dark-coral);
+    margin-right: 5px;
+}
+
+.remove-from-cart i {
+    margin-right: 5px;
 }
 
 .product-trash {
@@ -613,15 +672,18 @@ p.title-cart.cart{
 }
 
 .cont-pagar {
-    width: 80%;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
 }
 .pagar {
-    width: 100%; /* Ancho completo del botón */
+    max-width: 600px;
+    width: 80%; 
     font-size: 16px; /* Tamaño de fuente */
     border-radius: 4px; /* Bordes redondeados */
     background-color: var(--dark-coral);
     color: var(--white-color);
-    width: 100%; /* Ancho completo del botón */
     height: 40px; /* Espaciado interior */
     border: none;
     box-shadow: none;

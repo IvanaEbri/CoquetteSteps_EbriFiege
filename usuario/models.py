@@ -18,7 +18,7 @@ class Usuario(AbstractUser):
     def productos_carro (self):
         return Carrito.objects.filter(usuario=self, activo=True, comprado=False)
 
-    def carrito (self):
+    def carrito_count (self):
         return self.productos_carro().count()
 
 

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (selectedSize) {
                 const productId = addToCartButton.getAttribute('data-product-id');
 
-                fetch('/Carrito/agregar/', {
+                fetch('/Cart/agregar/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener('click', function () {
             const itemId = button.getAttribute('data-item-id');
 
-            fetch('/Carrito/eliminar/', {
+            fetch('/Cart/eliminar/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

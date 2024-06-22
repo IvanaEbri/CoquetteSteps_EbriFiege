@@ -6,8 +6,9 @@ from .forms import CategoriaForm, TipoForm, DeleteForm
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from usuario.views import NonClientActiveUserRequiredMixin
 
-class CategoriasView (TemplateView):
+class CategoriasView (NonClientActiveUserRequiredMixin,TemplateView):
     template_name = 'cat_admin.html'
 
     def get_context_data (self, **kwargs):
@@ -16,7 +17,7 @@ class CategoriasView (TemplateView):
         context['type'] = Tipo.objects.all()
         return context
 
-class CrearCategoriaView(CreateView):
+class CrearCategoriaView(NonClientActiveUserRequiredMixin,CreateView):
     model = Categoria
     form_class = CategoriaForm
     template_name = 'cat_ne_admin.html'
@@ -36,7 +37,7 @@ class CrearCategoriaView(CreateView):
                 messages.error(self.request, f"{error}")
         return super().form_invalid(form)
 
-class EditarCategoriaView(UpdateView):
+class EditarCategoriaView(NonClientActiveUserRequiredMixin,UpdateView):
     model = Categoria
     form_class = CategoriaForm
     template_name = 'cat_ne_admin.html'
@@ -56,7 +57,7 @@ class EditarCategoriaView(UpdateView):
                 messages.error(self.request, f"{error}")
         return super().form_invalid(form)
 
-class EliminarCategoriaView(DeleteView):
+class EliminarCategoriaView(NonClientActiveUserRequiredMixin,DeleteView):
     model = Categoria
     form_class = DeleteForm
     template_name = 'cat_del_admin.html'
@@ -88,7 +89,7 @@ class EliminarCategoriaView(DeleteView):
         return context
 
 
-class CrearTipoView(CreateView):
+class CrearTipoView(NonClientActiveUserRequiredMixin,CreateView):
     model = Tipo
     form_class = TipoForm
     template_name = 'type_ne_admin.html'
@@ -108,7 +109,7 @@ class CrearTipoView(CreateView):
                 messages.error(self.request, f"{error}")
         return super().form_invalid(form)
 
-class EditarTipoView(UpdateView):
+class EditarTipoView(NonClientActiveUserRequiredMixin,UpdateView):
     model = Tipo
     form_class = TipoForm
     template_name = 'type_ne_admin.html'
@@ -128,7 +129,7 @@ class EditarTipoView(UpdateView):
                 messages.error(self.request, f"{error}")
         return super().form_invalid(form)
 
-class EliminarTipoView(DeleteView):
+class EliminarTipoView(NonClientActiveUserRequiredMixin,DeleteView):
     model = Tipo
     form_class = DeleteForm
     template_name = 'type_del_admin.html'

@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from categoria.models import Categoria
 from usuario.models import Usuario
 from django.views.generic import TemplateView
+from django.contrib.auth import login
 
 
 from usuario.forms import RegistrationForm
@@ -22,6 +23,19 @@ class CustomLoginView(LoginView):
         context["category"] = Categoria.objects.all()
         #print (context["category"])
         return context
+
+    def form_valid(self, form):
+        user = form.get_user()
+        login(self.request, user)
+        
+        # Redirigir según el tipo de usuario
+        if user.activo:
+            if user.cliente:
+                return redirect('home')
+            else:
+                return redirect('home_admin')
+        else:
+            return redirect('home')
 
     def form_invalid(self, form):
         """No es obligatorio sobreescribir este método, pero es útil para agregar mensajes de error personalizados."""
@@ -98,7 +112,7 @@ class RegistrationView(CreateView):
                 messages.error(self.request, f"{error}")
         return super().form_invalid(form)
 
-class HomeAdminView (TemplateView):
+class HomeAdminView (NonClientActiveUserRequiredMixin, TemplateView):
     template_name = 'home_admin.html'
 
     def get_context_data (self, **kwargs):

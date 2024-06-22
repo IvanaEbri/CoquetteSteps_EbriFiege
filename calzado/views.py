@@ -10,6 +10,7 @@ import json
 from .forms import CalzadoForm, DeleteForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
+from usuario.views import NonClientActiveUserRequiredMixin
 
 class Home (TemplateView):
     template_name = "home_content.html"
@@ -112,7 +113,7 @@ class Product(TemplateView):
         else:
             return redirect("login")
 
-class ProductosView (TemplateView):
+class ProductosView (NonClientActiveUserRequiredMixin,TemplateView):
     template_name = 'prod_admin.html'
 
     def get_context_data (self, **kwargs):
@@ -120,7 +121,7 @@ class ProductosView (TemplateView):
         context['shoes'] = Calzado.objects.filter(activo=True)
         return context
 
-class CrearCalzadoView(CreateView):
+class CrearCalzadoView(NonClientActiveUserRequiredMixin, CreateView):
     model = Calzado
     form_class = CalzadoForm
     template_name = 'prod_ne_admin.html'
@@ -140,7 +141,7 @@ class CrearCalzadoView(CreateView):
                 messages.error(self.request, f"{error}")
         return super().form_invalid(form)
 
-class EditarCalzadoView(UpdateView):
+class EditarCalzadoView(NonClientActiveUserRequiredMixin, UpdateView):
     model = Calzado
     form_class = CalzadoForm
     template_name = 'prod_ne_admin.html'
@@ -160,7 +161,7 @@ class EditarCalzadoView(UpdateView):
                 messages.error(self.request, f"{error}")
         return super().form_invalid(form)
 
-class EliminarCalzadoView(DeleteView):
+class EliminarCalzadoView(NonClientActiveUserRequiredMixin,DeleteView):
     model = Calzado
     form_class = DeleteForm
     template_name = 'prod_del_admin.html'

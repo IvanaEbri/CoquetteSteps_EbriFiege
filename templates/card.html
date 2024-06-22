@@ -3,7 +3,7 @@
     <!--
     <img class="product-image" src="{% static 'calzado/' %}{{ category_filter }}/{{ item.tipo_calzado }}/{{ item.codigo }}/{{ item.codigo }}.jpg "  alt="{{ item }}" > 
     -->
-    <img class="product-image" src="{% static 'calzado/' %}{{ item.tipo_calzado.categoria_nom }}/{{ item.tipo_calzado }}/{{ item.codigo }}/{{ item.codigo }}.jpg" alt="{{ item }}" >
+    <img class="product-image" src="{{ item.foto_prod.url }}" alt="{{ item }}" >
 
     <div class="product-title">{{item.nombre}}</div>
     <div class="product-price">${{item.precio}}</div>

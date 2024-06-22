@@ -8,7 +8,7 @@
 <article class="product" id="product">
 <div class="product-one">
     
-    <img class="product-image" src="{% static 'calzado/' %}{{ product.tipo_calzado.categoria_nom }}/{{ product.tipo_calzado }}/{{ product.codigo }}/{{ product.codigo }}.jpg" alt="{{ product }}" >
+    <img class="product-image" src="{{ product.foto_prod.url }}" alt="{{ product }}" >
     <div class="detail-cont">
         <div class="detail">
             <div class="product-title"><h1>{{product.nombre}}</h1></div>

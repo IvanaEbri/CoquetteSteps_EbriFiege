@@ -2,7 +2,7 @@
 <article class="product" id="product-cart">
 <div class="product-one carro-product">
     <div class="img-cart-cont">
-        <img class="cart-image" src="{% static 'calzado/' %}{{ product.calzado.tipo_calzado.categoria_nom }}/{{ product.calzado.tipo_calzado }}/{{ product.calzado.codigo }}/{{ product.calzado.codigo }}.jpg" alt="{{ product }}" >
+        <img class="cart-image" src="{{ product.calzado.foto_prod.url }}" alt="{{ product }}" >
     </div>
     <div class="detail-cont-cart">
         <div class="row">

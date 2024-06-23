@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const sizeButtons = document.querySelectorAll('.size-button');
     const addToCartButton = document.getElementById('add-to-cart');
     const removeFromCartButtons = document.querySelectorAll('.remove-from-cart');
+    const addToWishlistForms = document.querySelectorAll('.add-to-wishlist');
+    const removeFromWishlistButtons = document.querySelectorAll('.remove-from-wishlist');
     let selectedSize = null;
 
     sizeButtons.forEach(button => {
@@ -84,13 +86,71 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    addToWishlistForms.forEach(form => {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const productId = form.querySelector('input[name="product_id"]').value;
+
+            fetch('/Wishlist/agregar/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({
+                    product_id: productId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Producto agregado a la lista de deseos');
+                } else {
+                    alert(`Error al agregar el producto a la lista de deseos: ${data.error}`);
+                }
+            })
+            .catch(error => {
+                alert('Hubo un error al procesar la solicitud. Por favor, inténtalo nuevamente.');
+            });
+        });
+    });
+
+    removeFromWishlistButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const itemId = button.getAttribute('data-item-id');
+    
+            fetch('/Wishlist/eliminar/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({
+                    item_id: itemId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById(`wishlist-item-${itemId}`).remove();
+                } else {
+                    alert(`Error al eliminar el producto de la lista de deseos: ${data.error}`);
+                }
+            })
+            .catch(error => {
+                alert('Hubo un error al procesar la solicitud. Por favor, inténtalo nuevamente.');
+            });
+        });
+    });
+    
+
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
             const cookies = document.cookie.split(';');
-            for (let i = 0; cookies.length > i; i++) {
+            for (let i = 0; i < cookies.length; i++) {
                 const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                if (cookie.startsWith(name + '=')) {
                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                     break;
                 }

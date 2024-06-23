@@ -36,7 +36,7 @@
             <div class="user-actions">
                 {% if user.is_authenticated %}
                     {% if user.cliente %}
-                    <a id="wish-list" href="#">Lista de Deseos</a>
+                    <a href="{% url 'lista_deseos' %}">Mi Lista de Deseos ❤️‍🔥</a>
                     <a href="{% url 'carrito' %}"><span class="cart">🛒 
                         {% block carro %} 
                             {% if cant_prduct %}

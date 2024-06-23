@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Mi Lista de Deseos ❤️‍🔥 - Coquette🎀​Steps{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="wishlist">
+        <div class="title-wishlist">
+            <h1>Mi Lista de Deseos</h1>
+            <p>🎀 ❤️‍🔥 🎀</p>
+        </div>
+        <div class="detail-wishlist-cont">
+            <div class="wishlist-products">
+                {% if wishlist %}
+                    {% for product in wishlist %}
+                        <div class="wishlist-item" id="wishlist-item-{{ product.id }}">
+                            {% include 'product_card.html' with product=product in_wishlist=True %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="wishlist-item">
+                        <p>Aún no has añadido productos a tu lista de deseos.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'js/scripts.js' %}"></script>
+{% endblock %}

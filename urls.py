@@ -30,9 +30,7 @@ urlpatterns = [
     path('Cart/', include('carrito.urls')),
     path('Category/', include('categoria.urls')),
     path('', Home.as_view(), name='home'), #AL FINAL
-    path('Wishlist/', include('deseo.urls')),  #  lista de deseos
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 
 
 

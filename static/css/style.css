@@ -830,3 +830,101 @@ input[type='checkbox'].form-control{
 select, textarea {
     flex-grow: 1;
 }
+
+/* ESTILOS PARA LA LISTA DE DESEOS */
+.remove-from-wishlist {
+    display: flex;
+    align-items: center;
+    text-align: end;
+    cursor: pointer;
+    color: var(--white-color);
+    border: none;
+    border-radius: 4px;
+    height: 25px;
+    padding: 5px;
+    background: var(--dark-coral);
+    margin-right: 5px;
+}
+
+.remove-from-wishlist {
+    margin-right: 5px;
+}
+
+.add-favorite {
+    display: flex;
+    align-items: center;
+    text-align: end;
+    cursor: pointer;
+    color: var(--white-color);
+    border: none;
+    border-radius: 4px;
+    height: 25px;
+    padding: 5px;
+    background: var(--dark-coral);
+    margin-right: 5px;
+}
+
+.add-favorite {
+    margin-right: 5px;
+}
+
+.title-wishlist {
+    text-align: center;
+    margin-bottom: 20px; /* Ajusta el margen inferior si es necesario */
+}
+
+.title-wishlist h1 {
+    font-size: 2em; /* Ajusta el tamaño de la fuente si es necesario */
+}
+
+.title-wishlist p {
+    font-size: 1.5em; /* Ajusta el tamaño de la fuente de los emojis si es necesario */
+}
+
+/* Estilos para el contenedor de los botones */
+.cont-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilos para el botón de agregar al carrito */
+.add-cart {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: var(--dark-coral);
+    border: none;
+    box-shadow: none;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    color: var(--white-color);
+    padding: 10px 20px;
+}
+
+/* Estilos para el botón de agregar a la lista de deseos */
+.add-favorite {
+    width: 100%;
+    height: 40px; /* Ajusta la altura */
+    font-size: 16px; /* Ajusta el tamaño de la fuente */
+    border-radius: 4px; /* Ajusta los bordes redondeados */
+    background-color: var(--dark-coral); /* Ajusta el color de fondo */
+    border: none;
+    box-shadow: none;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    color: var(--white-color); /* Ajusta el color del texto */
+    padding: 10px 20px; /* Ajusta el relleno */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Opcional: Estilo para el icono dentro del botón de deseos */
+.add-favorite i.fa-heart {
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+

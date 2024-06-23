@@ -1,30 +1,38 @@
 {% load static %}
 <article class="product" id="product-cart">
-<div class="product-one carro-product">
-    <div class="img-cart-cont">
-        <img class="cart-image" src="{{ product.calzado.foto_prod.url }}" alt="{{ product }}" >
-    </div>
-    <div class="detail-cont-cart">
-        <div class="row">
-            <div class="detail-cart">
-                <div class="product-title" data-product="{{product.calzado.pk}}">
-                    <h4>{{product.calzado.nombre}}</h4>
+    <div class="product-one carro-product">
+        <div class="img-cart-cont">
+            <img class="cart-image" src="{{ product.calzado.foto_prod.url }}" alt="{{ product }}" >
+        </div>
+        <div class="detail-cont-cart">
+            <div class="row">
+                <div class="detail-cart">
+                    <div class="product-title" data-product="{{ product.calzado.pk }}">
+                        <h4>{{ product.calzado.nombre }}</h4>
+                    </div>
+                    {% if in_cart %}
+                        <div class="product-size">Talle: {{ product.talle }}</div>
+                    {% endif %}
                 </div>
-                <div class="product-size" data-product="{{product.talle}}">Talle: {{product.talle}}</div>
-                
             </div>
-        </div>
-        <div class="row">
-            <div class="detail-cart">
-                <div class="product-price">${{product.calzado.precio}}</div>
-                <!--<div class="product-trash"><i class="fa-solid fa-trash"></i></div>-->
-                <div class="trash-cont">
-                    <button class="remove-from-cart" data-item-id="{{ product.id }}">
-                        <i class="fa fa-trash"></i> Borrar
-                    </button>  
-                </div> 
+            <div class="row">
+                <div class="detail-cart">
+                    <div class="product-price">${{ product.calzado.precio }}</div>
+                    <div class="trash-cont">
+                        {% if in_cart %}
+                            <button class="remove-from-cart" data-item-id="{{ product.id }}">
+                                <i class="fa fa-trash"></i> Borrar
+                            </button>
+                        {% else %}
+                            {% if in_wishlist %}
+                            <button class="remove-from-wishlist" data-item-id="{{ product.id }}">
+                                <i class="fa fa-heart-broken"></i> Eliminar de la lista
+                            </button>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </article>

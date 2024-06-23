@@ -19,7 +19,7 @@
             {% if cart %}
                 {% for product in cart %}
                     <div class="cart-item" id="cart-item-{{ product.id }}">
-                        {% include 'product_card.html' %}
+                        {% include 'product_card.html' with product=product in_cart=True %}
                         <!-- <button class="remove-from-cart" data-item-id="{{ product.id }}">
                             <i class="fa fa-trash"></i> Borrar
                         </button> -->
